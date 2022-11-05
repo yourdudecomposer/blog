@@ -1,0 +1,5 @@
+@use "../../colors" as color;
+
+.main{
+background-color: color.$body;
+}

@@ -1,0 +1,28 @@
+@use "../../colors" as color;
+
+.header {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    justify-content: space-between;
+    padding: 0 22px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+    color: #000000D9;
+
+    .header-right-side {
+
+        button {
+            width: 109px;
+            height: 51px;
+
+            &.sign-up {
+                border: solid;
+                color: color.$success;
+                border-radius: 5px;
+            }
+        }
+    }
+
+}
