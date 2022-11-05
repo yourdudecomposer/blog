@@ -1,6 +1,7 @@
 @import '../../colors.scss';
 .pagination{
-    text-align: center;
+    display: flex;
+    justify-content: center;
     padding-bottom: 17px;
 }
 
