@@ -1,9 +1,5 @@
 @import '../../colors.scss';
-.pagination{
-    display: flex;
-    justify-content: center;
-    padding-bottom: 17px;
-}
+
 
 .ant-pagination-item a{
     color: rgba(0, 0, 0, 0.75) ;
