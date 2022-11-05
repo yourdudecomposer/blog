@@ -16,11 +16,8 @@ const Pagination = () => {
     const ofset = Api.limit * page - Api.limit;
     dispatch(fetchArticles(ofset))
   }
-  if (articlesCount) return (
-    <div className='pagination'>
-      <P onChange={onChange} current={page} showSizeChanger={false} pageSize={Api.limit} size="small" total={articlesCount} />
-    </div>
-  )
+  if (articlesCount) return  <P className='pagination' onChange={onChange} current={page} showSizeChanger={false} pageSize={Api.limit} size="small" total={articlesCount} />
+  
 }
 
 export default Pagination;
