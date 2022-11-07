@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import blogReducer from './blogSlice'
+import mainPageSlice from './mainPageSlice'
+import articlePageSlice from './articlePageSlice'
 
 export default configureStore({
   reducer: {
-    blog: blogReducer,
+   mainPageSlice,
+   articlePageSlice,
   },
 })

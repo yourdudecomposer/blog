@@ -1,24 +1,22 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import Api from '../services/Api/Api'
+import api from '../services/Api/Api'
 
 
 export const fetchArticles = createAsyncThunk(
     'users/fetchArticlesStatus',
     async (ofset) => {
-        const response = await Api.getArticles(ofset)
+        const response = await api.getArticles(ofset)
         return response;
     }
 )
 
 
-export const blogSlice = createSlice({
-    name: 'blog',
+export const mainPageSlice = createSlice({
+    name: 'mainPage',
     initialState: {
         articles: [],
         loading: 'idle',
-        page: null,
-        // totalPage:null,
-        articlesCount:null,
+        articlesCount: null,
         error: null,
     },
     reducers: {
@@ -28,11 +26,19 @@ export const blogSlice = createSlice({
         // Add reducers for additional action types here, and handle loading state as needed
         builder.addCase(fetchArticles.fulfilled, (state, action) => {
             console.log('fullfiled')
+
             console.log(action.payload)
-            state.articles = action.payload.articles;
-            state.articlesCount = action.payload.articlesCount;
-            // state.totalPage = Math.ceil(action.payload.articlesCount/Api.limit)
-            state.loading = 'idle';
+            if (action.payload.articles) {
+                state.articles = action.payload.articles;
+                state.articlesCount = action.payload.articlesCount;
+                // state.totalPage = Math.ceil(action.payload.articlesCount/Api.limit)
+                state.loading = 'idle';
+            } else{
+                state.loading = 'failed';
+                state.error = action.payload.errors;
+                state.articlesCount = null;
+            }
+
 
         })
         builder.addCase(fetchArticles.pending, (state, action) => {
@@ -45,10 +51,10 @@ export const blogSlice = createSlice({
             console.log('rejected')
             state.loading = 'failed';
             state.error = action.error;
-            state.articlesCount  = null;
+            state.articlesCount = null;
         })
     },
 })
 
 
-export default blogSlice.reducer
+export default mainPageSlice.reducer

@@ -1,0 +1,5 @@
+@use "../../colors.scss" as color;
+
+.error{
+background-color: color.$body;
+}
