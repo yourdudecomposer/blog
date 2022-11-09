@@ -1,9 +1,17 @@
 import React from 'react';
+import classes from './ArticleText.module.scss';
+import ReactMarkdown from 'react-markdown';
 
-function ArticleText() {
-    return ( <p>
+
+
+
+function ArticleText({body}) {
+    return ( <section className={classes['article-text']}>
         
-    </p> );
+        <ReactMarkdown>
+            {body}
+        </ReactMarkdown>
+    </section> );
 }
 
 export default ArticleText;

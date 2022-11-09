@@ -6,7 +6,7 @@ import Tag from '../ui/Tag/Tag';
 import { format } from 'date-fns'
 import { Link, useRouteMatch } from 'react-router-dom';
 
-function ArticleHeader({ title, createdAt = 0, favoritesCount, slug, tagList=[], author: { username, image } =2}) {
+function ArticleHeader({ title, createdAt = 0, favoritesCount, slug, tagList=[], author: { username, image } = 2 }) {
 
 
 

@@ -10,26 +10,22 @@ import { useDispatch } from 'react-redux';
 import { fetchArticle } from '../../redux/articlePageSlice';
 
 
-
-
-
 function Article() {
-    console.log();
 
-const {slug} = useParams();
+    const { slug } = useParams();
+
     const { article } = useSelector(state => state.articlePageSlice)
-console.log(article)
- const dispatch = useDispatch()
- useEffect(()=>{ 
-    dispatch(fetchArticle(slug))
- },[])
+    console.log(article)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(fetchArticle(slug))
+    }, [])
     return (
         <div className={classes["article-container"]}>
             <article className={classes["article"]}>
-                {article.slug||23}
                 <ArticleHeader {...article} />
-                {/* <ArticleIntro /> */}
-                {/* <ArticleText /> */}
+                <ArticleIntro {...article} />
+                <ArticleText {...article} />
             </article>
         </div>
     );

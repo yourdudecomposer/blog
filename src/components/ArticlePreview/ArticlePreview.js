@@ -7,7 +7,7 @@ function ArticlePreview(props) {
     return (<article className={classes["article-preview"]}>
 <ArticleHeader
 {...props}/>
-<ArticleIntro/>
+<ArticleIntro {...props}/>
     </article>);
 }
 

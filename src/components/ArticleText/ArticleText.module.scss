@@ -1,0 +1,21 @@
+@use '../../colors.scss' as colors;
+
+.article-text {
+    color: colors.$text;
+    margin-top: 25px;
+
+    p {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    h5 {
+        font-size: 20px;
+        line-height: 28px;
+    }
+
+    h6 {
+        font-size: 18px;
+        line-height: 28px;
+    }
+}
