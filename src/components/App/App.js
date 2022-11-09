@@ -13,6 +13,7 @@ import {
   useParams
 } from "react-router-dom";
 import Article from '../../pages/Article/Article';
+import SignUp from "../../pages/SignUp/SignUp";
 
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
             </Route>
             <Route path={'/sign-in'}>
               <SignIn />
+            </Route>
+            <Route path={'/sign-up'}>
+            <SignUp/>
             </Route>
             <Route exact path={'/articles'}>
               <MainPage />
