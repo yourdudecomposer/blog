@@ -1,1 +1,2 @@
-<a href="blog-seven-rust.vercel.app" target = "_blank">blog-seven-rust.vercel.app<a/>
+
+[blog-seven-rust.vercel.app](blog-seven-rust.vercel.app)
