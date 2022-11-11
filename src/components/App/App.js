@@ -3,7 +3,7 @@ import module from './App.module.scss';
 import MainPage from '../../pages/MainPage/MainPage';
 import SignIn from '../../pages/SignIn/SignIn';
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
-
+import { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,6 +17,7 @@ import SignUp from "../../pages/SignUp/SignUp";
 
 
 function App() {
+
 
 
   return (

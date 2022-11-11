@@ -1,16 +1,24 @@
 import React, { useEffect } from 'react';
 import ArticlePreview from '../ArticlePreview/ArticlePreview';
 import module from './ArticleList.module.scss'
-import { useSelector, useDispatch } from 'react-redux'
-import { fetchArticles } from '../../redux/mainPageSlice'
+import { connect } from 'react-redux';
+import { fetchArticles } from '../../new-redux/actions/actions'
 
-function ArticleList() {
+function ArticleList({ dispatch, articles,loading,error }) {
 
-    const articles = useSelector((state) => state.mainPageSlice.articles)
-    const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchArticles())
     }, [dispatch])
+
+    if (error) {
+        return (<div className={module['server-error']}>
+            Something wrong with server</div>);
+    }
+
+    if (loading) {
+        return (<div className={module['loading']}>
+          loading</div>);
+    }
 
 
     return (
@@ -18,7 +26,6 @@ function ArticleList() {
             {articles
                 .map(el => {
                     return <ArticlePreview key={el.slug} {...el} />
-
                 })
             }
 
@@ -29,4 +36,10 @@ function ArticleList() {
     );
 }
 
-export default ArticleList;
+const mapStateToProps = state => ({
+    articles: state.articles.articles,
+    loading: state.articles.loading,
+    error: state.articles.error
+});
+
+export default connect(mapStateToProps)(ArticleList);
