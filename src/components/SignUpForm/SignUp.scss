@@ -1,0 +1,18 @@
+.ant-col-sm-24.ant-form-item-label {
+    padding: 0;
+    margin-bottom: 2px;
+    font-size: 14px;
+    line-height: 22px;
+    width: 100%;
+    text-align: left;
+
+    & :before {
+        display: none !important;
+    }
+
+    & :after {
+        display: none;
+
+    }
+
+}

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import ArticlePreview from '../ArticlePreview/ArticlePreview';
 import module from './ArticleList.module.scss'
 import { connect } from 'react-redux';
-import { fetchArticles } from '../../new-redux/actions/actions'
+import { fetchArticles } from '../../redux/actions/actions'
 
 function ArticleList({ dispatch, articles,loading,error }) {
 

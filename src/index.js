@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { legacy_createStore as createStore, applyMiddleware, compose } from 'redux';
 
 import thunk from 'redux-thunk';
-import rootReducer from './new-redux/reducer/rootReduser';
+import rootReducer from './redux/reducer/rootReduser';
 
 
 import './index.scss';

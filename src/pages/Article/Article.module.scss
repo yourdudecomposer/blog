@@ -14,3 +14,20 @@ padding-bottom: 61px;
     box-shadow: 0px 4px 12px 0px #00000026;
 
 }
+
+.server-error{
+    display: flex;
+    justify-content: center;
+    height: calc(100vh - 80px);
+    font-size: 20px;
+    padding-top: 20px;
+
+}
+.loading{
+    display: flex;
+    justify-content: center;
+    height: calc(100vh - 80px);
+    font-size: 20px;
+    padding-top: 20px;
+
+}

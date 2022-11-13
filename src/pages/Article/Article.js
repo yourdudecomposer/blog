@@ -1,25 +1,35 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ArticleHeader from '../../components/ArticleHeader/ArticleHeader';
 import ArticleIntro from '../../components/ArticleIntro/ArticleIntro';
 import ArticleText from '../../components/ArticleText/ArticleText';
 import classes from './Article.module.scss'
-import { useDispatch } from 'react-redux';
-import { fetchArticle } from '../../redux/articlePageSlice';
+import { fetchArticle } from '../../redux/actions/actions';
 
 
-function Article() {
+function Article({dispatch,article,loading,error}) {
 
     const { slug } = useParams();
 
-    const { article } = useSelector(state => state.articlePageSlice)
-    console.log(article)
-    const dispatch = useDispatch()
+
     useEffect(() => {
         dispatch(fetchArticle(slug))
     }, [])
+
+    
+    if (error) {
+        return (<div className={classes['server-error']}>
+            Something wrong with server</div>);
+    }
+
+    if (loading) {
+        return (<div className={classes['loading']}>
+          loading</div>);
+    }
+
+
     return (
         <div className={classes["article-container"]}>
             <article className={classes["article"]}>
@@ -30,4 +40,11 @@ function Article() {
         </div>
     );
 }
-export default Article;
+
+const mapStateToProps = state => ({
+    article: state.article.article,
+    loading: state.article.loading,
+    error: state.article.error
+});
+
+export default connect(mapStateToProps)(Article);
