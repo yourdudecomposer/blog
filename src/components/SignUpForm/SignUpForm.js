@@ -6,7 +6,8 @@ import {
 } from 'antd';
 import React, { useState } from 'react';
 import classes from './SignUpForm.module.scss'
-import './SignUp.scss'
+import './SignUp.scss';
+import { Link } from 'react-router-dom';
 
 const formItemLayout = {
     labelCol: {
@@ -14,9 +15,9 @@ const formItemLayout = {
             span: 24,
         },
         sm: {
-            span:24,
+            span: 24,
         },
-        alignItem:'center'
+        alignItem: 'center'
     },
     wrapperCol: {
         xs: {
@@ -45,9 +46,9 @@ const SignUpForm = () => {
         console.log('Received values of form: ', values);
     };
 
-   
+
     return (
-        
+
         <Form
             {...formItemLayout}
             form={form}
@@ -60,11 +61,25 @@ const SignUpForm = () => {
             scrollToFirstError
             className={classes['form']}
         >
-                        <h2>Create new account</h2>
+            <h2>Create new account</h2>
+
+            <Form.Item
+                name="nickname"
+                label="Username"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input your nickname!',
+                        whitespace: true,
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
 
             <Form.Item
                 name="email"
-                label="E-mail"
+                label="Email address"
                 rules={[
                     {
                         type: 'email',
@@ -83,9 +98,9 @@ const SignUpForm = () => {
                 name="password"
                 label="Password"
                 rules={[
-                    {
+                    {min:6,
                         required: true,
-                        message: 'Please input your password!',
+                        message: 'Your password needs to be at least 6 characters.',
                     },
                 ]}
                 hasFeedback
@@ -95,7 +110,7 @@ const SignUpForm = () => {
 
             <Form.Item
                 name="confirm"
-                label="Confirm Password"
+                label="Repeat Password"
                 dependencies={['password']}
                 hasFeedback
                 rules={[
@@ -108,29 +123,14 @@ const SignUpForm = () => {
                             if (!value || getFieldValue('password') === value) {
                                 return Promise.resolve();
                             }
-                            return Promise.reject(new Error('The two passwords that you entered do not match!'));
+                            return Promise.reject(new Error('Passwords must match'));
                         },
                     }),
                 ]}
             >
                 <Input.Password />
             </Form.Item>
-
-            <Form.Item
-                name="nickname"
-                label="Nickname"
-                tooltip="What do you want others to call you?"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your nickname!',
-                        whitespace: true,
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-
+<hr />
             <Form.Item
                 name="agreement"
                 valuePropName="checked"
@@ -143,8 +143,8 @@ const SignUpForm = () => {
                 {...tailFormItemLayout}
             >
                 <Checkbox>
-                I agree to the processing of my personal 
-information
+                    I agree to the processing of my personal
+                    information
                 </Checkbox>
             </Form.Item>
             <Form.Item {...tailFormItemLayout}>
@@ -152,6 +152,12 @@ information
                     Create
                 </Button>
             </Form.Item>
+
+            <p>
+
+           
+            Already have an account?  <Link to='/sign-in'>Sign In</Link>.
+            </p>
         </Form>
     );
 };
