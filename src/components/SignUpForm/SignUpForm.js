@@ -1,8 +1,10 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 import { useForm, Controller } from "react-hook-form";
 import { Link } from "react-router-dom";
 import Checkbox from "../ui/Checkbox/Checkbox";
+import FormHeader from '../ui/FormHeader/FormHeader';
+import SubmitButton from '../ui/SubmitButton/SubmitButton';
 import classes from './SignUpForm.module.scss'
 export default function App() {
 
@@ -15,7 +17,7 @@ export default function App() {
     const onSubmit = data => console.log(data);
     return (
         <form className={classes['form']} onSubmit={handleSubmit(onSubmit)}>
-            <h2>Create new account</h2>
+            <FormHeader title='Create new account'/>
             <label htmlFor="username">Username</label>
             <input id="username" {...register("username", {
                 required: "Username is required",
@@ -33,7 +35,7 @@ export default function App() {
             <label htmlFor="mail">Email address</label>
             <input
                 id="mail"
-                {...register("mail", { 
+                {...register("mail", {
                     required: "Email Address is required",
                     pattern: {
                         value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -55,8 +57,8 @@ export default function App() {
                         message: 'Your password needs to be at least 6 characters.'
                     },
                     maxLength: {
-                        value: 12,
-                        message: "Max length is 12"
+                        value: 40,
+                        message: "Max length is 40"
                     }
                 })} placeholder='Password' />
             <p className={classes['error-message']}>{errors.password?.message}</p>
@@ -87,7 +89,7 @@ export default function App() {
                 }}
             />
             <p className={classes['error-message']}>{errors.checkbox?.message}</p>
-            <button type="submit" >Create</button>
+            <SubmitButton label='Create' />
             <p className={classes['sign-in-text']}>Already have an account? <Link to='/sign-in'>Sign In</Link>.</p>
         </form>
     );

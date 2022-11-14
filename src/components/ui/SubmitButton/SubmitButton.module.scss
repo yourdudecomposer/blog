@@ -1,0 +1,8 @@
+@use '../../../colors.scss' as color;
+
+.button{
+        background-color: color.$info;
+        color: white;
+border-radius: 4px;
+        height: 40px;
+}

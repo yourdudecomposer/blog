@@ -13,7 +13,8 @@
         font-size: 14px;
         line-height: 22px;
         margin-bottom: 2px;
-        &:first-of-type{
+
+        &:first-of-type {
             margin-top: 21px;
         }
     }
@@ -26,29 +27,12 @@
         padding-left: 12px;
         font-size: 16px;
         line-height: 24px;
+
         &::placeholder {
             color: #BFBFBF;
         }
     }
 
-  
-
-    hr {
-        border: 0;
-        clear: both;
-        display: block;
-        width: 96%;
-        background-color: #E8E8E8;
-        height: 1px;
-        margin-bottom: 8px;
-    }
-
-    .checkbox {
-        margin-bottom: 2px;
-        font-size: 14px;
-        line-height: 22px;
-        color: #595959;
-    }
     .sign-in-text {
         width: 100%;
         text-align: center;
@@ -60,11 +44,9 @@
         color: color.$highlight-color;
         margin-bottom: 12px;
 
-        &:nth-child(13) {
+        &:nth-child(7) {
             margin-bottom: 21px;
         }
-        &:nth-child(16) {
-            margin-bottom: 21px;
-        }
+
     }
 }
