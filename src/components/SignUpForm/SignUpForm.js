@@ -1,3 +1,5 @@
+import React, { useRef } from 'react';
+
 import { useForm, Controller } from "react-hook-form";
 import { Link } from "react-router-dom";
 import Checkbox from "../ui/Checkbox/Checkbox";
@@ -6,7 +8,10 @@ export default function App() {
 
 
 
-    const { register, handleSubmit, formState: { errors }, control } = useForm();
+    const { register, handleSubmit, formState: { errors }, control, watch } = useForm();
+
+    let currentPassword = watch("password", "");
+
     const onSubmit = data => console.log(data);
     return (
         <form className={classes['form']} onSubmit={handleSubmit(onSubmit)}>
@@ -24,12 +29,17 @@ export default function App() {
                 }
             })} placeholder='Username' />
             <p className={classes['error-message']}>{errors.username?.message}</p>
-            
+
             <label htmlFor="mail">Email address</label>
             <input
                 id="mail"
-                type="email"
-                {...register("mail", { required: "Email Address is required" })}
+                {...register("mail", { 
+                    required: "Email Address is required",
+                    pattern: {
+                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                        message: 'Email Address is not correct'
+                    },
+                })}
                 placeholder='Email address'
             />
             <p className={classes['error-message']} >{errors.mail?.message}</p>
@@ -37,6 +47,7 @@ export default function App() {
 
             <input
                 id="password"
+
                 {...register("password", {
                     required: "Password is required",
                     minLength: {
@@ -49,32 +60,28 @@ export default function App() {
                     }
                 })} placeholder='Password' />
             <p className={classes['error-message']}>{errors.password?.message}</p>
-            <label htmlFor="passwordConfirm">Repeat Password</label>
+            <label htmlFor="password_repeat">Repeat Password</label>
             <input
-                id="passwordConfirm"
-                {...register("passwordConfirm", {
-                    required: "Username is required",
-                    minLength: {
-                        value: 3,
-                        message: 'Min length is 3'
-                    },
-                    maxLength: {
-                        value: 12,
-                        message: "Max length is 12"
-                    }
-                })} placeholder='Password' />
-            <p className={classes['error-message']}>{errors.passwordConfirm?.message}</p>
+                id="password_repeat"
+                {...register("password_repeat",
+                    {
+                        required: "Repeat Password is required",
+                        pattern: {
+                            value: new RegExp(`^${currentPassword}$`),
+                            message: 'Passwords must match'
+                        },
+
+                    })} placeholder='Password' />
+            <p className={classes['error-message']}>{errors.password_repeat?.message}</p>
             <hr />
             <Controller
                 name="checkbox"
                 control={control}
                 rules={{ required: 'You need check it' }}
-                render={({ field: { onChange, value, ref } }) => {
+                render={({ field: { onChange } }) => {
                     return <Checkbox
+                        onChange={onChange}
                         className={classes['checkbox']}
-                        value={value}
-                        onChange={onChange} // send value to hook form
-                        inputRef={ref}
                         label={'I agree to the processing of my personal information'}
                     />
                 }}

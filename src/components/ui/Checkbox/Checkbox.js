@@ -1,5 +1,5 @@
 import { Checkbox as Ch } from 'antd';
 import React from 'react';
 
-const Checkbox = ({label,onChange, className}) => <Ch className={className} onChange={onChange}>{label}</Ch>;
+const Checkbox = ({label, className, onChange}) => <Ch onChange={onChange} className={className} >{label}</Ch>;
 export default Checkbox;

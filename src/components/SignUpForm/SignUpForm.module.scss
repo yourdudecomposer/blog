@@ -2,6 +2,7 @@
 
 .form {
     font-family: Roboto;
+
     h2 {
         width: 100%;
         text-align: center;
@@ -18,11 +19,13 @@
     flex-direction: column;
     background-color: white;
     padding: 48px 32px 48px 32px;
-label{
-    font-size: 14px;
-    line-height: 22px;
-    margin-bottom: 2px;
-}
+
+    label {
+        font-size: 14px;
+        line-height: 22px;
+        margin-bottom: 2px;
+    }
+
     input {
         height: 40px;
         border: 1px solid #D9D9D9;
@@ -38,6 +41,7 @@ label{
         background-color: color.$info;
         color: white;
         margin-bottom: 8px;
+
         height: 40px;
     }
 
@@ -49,7 +53,6 @@ label{
         background-color: #E8E8E8;
         height: 1px;
         margin-bottom: 8px;
-        margin-top: 9px;
     }
 
     .checkbox {
@@ -59,13 +62,21 @@ label{
         color: #595959;
     }
 
-    .sign-in-text{
+    .sign-in-text {
         width: 100%;
         text-align: center;
         color: color.$light-grey;
     }
-    p {
+
+    .error-message {
         color: color.$highlight-color;
         margin-bottom: 12px;
+
+        &:nth-child(13) {
+            margin-bottom: 21px;
+        }
+        &:nth-child(16) {
+            margin-bottom: 21px;
+        }
     }
 }
