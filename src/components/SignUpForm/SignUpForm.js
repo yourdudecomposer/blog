@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import Checkbox from "../ui/Checkbox/Checkbox";
 import FormHeader from '../ui/FormHeader/FormHeader';
 import SubmitButton from '../ui/SubmitButton/SubmitButton';
-import classes from './SignUpForm.module.scss'
+import classes from './SignUpForm.module.scss';
+import { errorStyle } from '../../assets/errorStyle';
 export default function App() {
 
 
@@ -19,7 +20,9 @@ export default function App() {
         <form className={classes['form']} onSubmit={handleSubmit(onSubmit)}>
             <FormHeader title='Create new account'/>
             <label htmlFor="username">Username</label>
-            <input id="username" {...register("username", {
+            <input id="username"
+            style={errors.username && errorStyle}
+            {...register("username", {
                 required: "Username is required",
                 minLength: {
                     value: 3,
@@ -35,6 +38,7 @@ export default function App() {
             <label htmlFor="mail">Email address</label>
             <input
                 id="mail"
+                style={errors.mail && errorStyle}
                 {...register("mail", {
                     required: "Email Address is required",
                     pattern: {
@@ -49,6 +53,7 @@ export default function App() {
 
             <input
                 id="password"
+                style={errors.password && errorStyle}
 
                 {...register("password", {
                     required: "Password is required",
@@ -65,6 +70,8 @@ export default function App() {
             <label htmlFor="password_repeat">Repeat Password</label>
             <input
                 id="password_repeat"
+                style={errors.password_repeat && errorStyle}
+
                 {...register("password_repeat",
                     {
                         required: "Repeat Password is required",
