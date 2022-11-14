@@ -1,5 +1,21 @@
 @import './assets/reset css/reset.css';
 
+
+@font-face {
+    font-family: 'Roboto';
+    src:  url(./assets/fonts/Roboto/Roboto-Regular.ttf) format('truetype');
+    /* other formats include: 'woff2', 'truetype, 'opentype',
+                              'embedded-opentype', and 'svg' */
+  }
+@font-face {
+    font-family: 'RobotoMedium';
+    src:  url(./assets/fonts/Roboto/Roboto-Medium.ttf) format('truetype');
+    /* other formats include: 'woff2', 'truetype, 'opentype',
+                              'embedded-opentype', and 'svg' */
+  }
+
+
+
 @supports (font-variation-settings: normal) {
     @font-face {
         font-family: 'Inter';
@@ -18,4 +34,5 @@
 
 body {
     font-family: Inter;
+ 
 }

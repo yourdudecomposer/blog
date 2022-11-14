@@ -11,7 +11,8 @@ export default function App() {
     return (
         <form className={classes['form']} onSubmit={handleSubmit(onSubmit)}>
             <h2>Create new account</h2>
-            <input {...register("username", {
+            <label htmlFor="username">Username</label>
+            <input id="username" {...register("username", {
                 required: "Username is required",
                 minLength: {
                     value: 3,
@@ -22,37 +23,47 @@ export default function App() {
                     message: "Max length is 12"
                 }
             })} placeholder='Username' />
-            <p >{errors.username?.message}</p>
+            <p className={classes['error-message']}>{errors.username?.message}</p>
+            
+            <label htmlFor="mail">Email address</label>
             <input
+                id="mail"
                 type="email"
                 {...register("mail", { required: "Email Address is required" })}
                 placeholder='Email address'
             />
-            <p >{errors.mail?.message}</p>
-            <input {...register("password", {
-                required: "Password is required",
-                minLength: {
-                    value: 6,
-                    message: 'Your password needs to be at least 6 characters.'
-                },
-                maxLength: {
-                    value: 12,
-                    message: "Max length is 12"
-                }
-            })} placeholder='Password' />
-            <p >{errors.password?.message}</p>
-            <input {...register("passwordConfirm", {
-                required: "Username is required",
-                minLength: {
-                    value: 3,
-                    message: 'Min length is 3'
-                },
-                maxLength: {
-                    value: 12,
-                    message: "Max length is 12"
-                }
-            })} placeholder='Password' />
-            <p >{errors.passwordConfirm?.message}</p>
+            <p className={classes['error-message']} >{errors.mail?.message}</p>
+            <label htmlFor="password">Password</label>
+
+            <input
+                id="password"
+                {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                        value: 6,
+                        message: 'Your password needs to be at least 6 characters.'
+                    },
+                    maxLength: {
+                        value: 12,
+                        message: "Max length is 12"
+                    }
+                })} placeholder='Password' />
+            <p className={classes['error-message']}>{errors.password?.message}</p>
+            <label htmlFor="passwordConfirm">Repeat Password</label>
+            <input
+                id="passwordConfirm"
+                {...register("passwordConfirm", {
+                    required: "Username is required",
+                    minLength: {
+                        value: 3,
+                        message: 'Min length is 3'
+                    },
+                    maxLength: {
+                        value: 12,
+                        message: "Max length is 12"
+                    }
+                })} placeholder='Password' />
+            <p className={classes['error-message']}>{errors.passwordConfirm?.message}</p>
             <hr />
             <Controller
                 name="checkbox"
@@ -68,7 +79,7 @@ export default function App() {
                     />
                 }}
             />
-            <p >{errors.checkbox?.message}</p>
+            <p className={classes['error-message']}>{errors.checkbox?.message}</p>
             <button type="submit" >Create</button>
             <p className={classes['sign-in-text']}>Already have an account? <Link to='/sign-in'>Sign In</Link>.</p>
         </form>
