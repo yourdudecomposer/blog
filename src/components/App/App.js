@@ -14,6 +14,7 @@ import {
 } from "react-router-dom";
 import Article from '../../pages/Article/Article';
 import SignUp from "../../pages/SignUp/SignUp";
+import Profile from '../../pages/Profile/Profile';
 
 
 function App() {
@@ -34,6 +35,9 @@ function App() {
             </Route>
             <Route path={'/sign-up'}>
             <SignUp/>
+            </Route>
+            <Route path={'/profile'}>
+            <Profile/>
             </Route>
             <Route exact path={'/articles'}>
               <MainPage />

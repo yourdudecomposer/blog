@@ -9,6 +9,9 @@ function Header() {
         <Link to='/'>
             <h1>Realworld Blog</h1>
         </Link>
+        <Link to='/profile'>
+            <h1>меня тут нету</h1>
+        </Link>
         <div className={classes["header-right-side"]}>
 
             <Link to='/sign-in'>
