@@ -73,6 +73,9 @@
 
         .article-header__author-img {
             grid-area: 1 / 2 / 3 / 3;
+            max-width: 46px;
+            border-radius: 50%;
+
         }
     }
 }

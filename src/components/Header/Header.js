@@ -3,7 +3,10 @@ import classes from './Header.module.scss';
 import {
     Link,
 } from "react-router-dom";
-function Header() {
+import { connect } from 'react-redux';
+import HeaderRightSide from '../HeaderRightSide/HeaderRightSide';
+function Header({token}) {
+    console.log(token)
     return (<header className={classes['header']}>
 
         <Link to='/'>
@@ -12,16 +15,16 @@ function Header() {
         <Link to='/profile'>
             <h1>меня тут нету</h1>
         </Link>
-        <div className={classes["header-right-side"]}>
 
-            <Link to='/sign-in'>
-                <button className={classes['sign-in']}>Sign-in</button>
-            </Link>
-            <Link to='/sign-up'>
-                <button className={classes['sign-up']}>Sign-up</button>
-            </Link>
-        </div>
+
+<HeaderRightSide/>
     </header>);
 }
 
-export default Header;
+
+function mstp(state) {
+    return {
+        token: state.auth.token
+    }
+}
+export default connect(mstp)( Header);

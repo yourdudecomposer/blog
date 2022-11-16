@@ -7,6 +7,7 @@ import FormHeader from '../ui/FormHeader/FormHeader';
 import SubmitButton from '../ui/SubmitButton/SubmitButton';
 import classes from './SignUpForm.module.scss';
 import { errorStyle } from '../../assets/errorStyle';
+import api from '../../services/Api/Api';
 export default function App() {
 
 
@@ -15,24 +16,36 @@ export default function App() {
 
     let currentPassword = watch("password", "");
 
-    const onSubmit = data => console.log(data);
+    
+    const onSubmit = data => {
+        const dataForSend = {
+            user: {
+                username: data.username,
+                email: data.mail,
+                password: data.password
+            }
+        }
+        api.registerUser(dataForSend)
+            .then(res => console.log(res))
+        console.log(data);
+    }
     return (
         <form className={classes['form']} onSubmit={handleSubmit(onSubmit)}>
-            <FormHeader title='Create new account'/>
+            <FormHeader title='Create new account' />
             <label htmlFor="username">Username</label>
             <input id="username"
-            style={errors.username && errorStyle}
-            {...register("username", {
-                required: "Username is required",
-                minLength: {
-                    value: 3,
-                    message: 'Min length is 3'
-                },
-                maxLength: {
-                    value: 12,
-                    message: "Max length is 12"
-                }
-            })} placeholder='Username' />
+                style={errors.username && errorStyle}
+                {...register("username", {
+                    required: "Username is required",
+                    minLength: {
+                        value: 3,
+                        message: 'Min length is 3'
+                    },
+                    maxLength: {
+                        value: 12,
+                        message: "Max length is 12"
+                    }
+                })} placeholder='Username' />
             <p className={classes['error-message']}>{errors.username?.message}</p>
 
             <label htmlFor="mail">Email address</label>

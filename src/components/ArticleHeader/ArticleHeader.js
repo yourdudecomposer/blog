@@ -28,7 +28,7 @@ function ArticleHeader({ title, createdAt = 0, favoritesCount, slug, tagList=[],
             <section className={classes["article-header__right-side"]}>
                 <h3 className={classes["article-header__author-name"]}>{username}</h3>
                 <p className={classes["article-header__date"]}>{format(new Date(createdAt), 'MMMM d, Y')}</p>
-                <img src={avatar} alt="" className={classes["article-header__author-img"]}></img>
+                <img src={image} alt="" className={classes["article-header__author-img"]}></img>
             </section>
         </header>
     );

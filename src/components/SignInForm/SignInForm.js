@@ -6,12 +6,29 @@ import FormHeader from '../ui/FormHeader/FormHeader';
 import SubmitButton from '../ui/SubmitButton/SubmitButton';
 import classes from './SignInForm.module.scss';
 import { errorStyle } from '../../assets/errorStyle';
-export default function SignInForm() {
+import api from '../../services/Api/Api';
+import { saveToken } from '../../redux/actions/actions';
+import {connect} from 'react-redux'
+
+function SignInForm({dispatch}) {
 
     const { register, handleSubmit, formState: { errors },  } = useForm();
 
+    const onSubmit = data => {
+        const dataForSend = {
+            user: {
+                email: data.mail,
+                password: data.password
+            }
+        }
+        console.log('asdfdassdfs')
 
-    const onSubmit = data => console.log(data);
+        api.loginUser(dataForSend)
+            .then(res => dispatch(saveToken(res.user.token)))
+            .catch(err=>console.log(err))
+    }
+
+
     return (
         <form className={classes['form']} onSubmit={handleSubmit(onSubmit)}>
             <FormHeader title='Sign In' />
@@ -43,8 +60,13 @@ export default function SignInForm() {
             <p className={classes['error-message']}>{errors.password?.message}</p>
 
 
+
             <SubmitButton label='Login' />
-            <p className={classes['sign-in-text']}>Don’t have an account? <Link to='/sign-in'>Sign Up</Link>.</p>
+
+            <p className={classes['sign-in-text']}>Don’t have an account? <Link to='/sign-up'>Sign Up</Link>.</p>
         </form>
     );
 }
+
+
+export default  connect()(SignInForm)

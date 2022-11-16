@@ -9,15 +9,17 @@ import {
   Switch,
   Route,
   Link,
+  Redirect,
   useRouteMatch,
   useParams
 } from "react-router-dom";
 import Article from '../../pages/Article/Article';
 import SignUp from "../../pages/SignUp/SignUp";
 import Profile from '../../pages/Profile/Profile';
+import { connect } from 'react-redux';
 
 
-function App() {
+function App({token}) {
 
 
 
@@ -27,25 +29,25 @@ function App() {
         <Header />
         <main className={module["main"]}>
           <Switch>
-          <Route exact path={'/'}>
+            <Route exact path={'/'}>
               <MainPage />
             </Route>
             <Route path={'/sign-in'}>
-              <SignIn />
+              {token ? <Redirect to="/articles" /> : <SignIn />}
             </Route>
             <Route path={'/sign-up'}>
-            <SignUp/>
+              <SignUp />
             </Route>
             <Route path={'/profile'}>
-            <Profile/>
+              <Profile />
             </Route>
             <Route exact path={'/articles'}>
               <MainPage />
             </Route>
-            <Route  path={`/articles/:slug`}>
-              <Article/>
+            <Route path={`/articles/:slug`}>
+              <Article />
             </Route>
-         
+
 
           </Switch>
 
@@ -58,5 +60,9 @@ function App() {
   );
 }
 
-
-export default App;
+function mstp(s) {
+ return{
+  token:s.auth.token
+ } 
+}
+export default connect(mstp) (App);
