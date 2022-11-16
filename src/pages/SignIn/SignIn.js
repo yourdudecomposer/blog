@@ -1,11 +1,30 @@
+import { Alert } from 'antd';
 import React from 'react';
+import { connect } from 'react-redux';
 import SignInForm from '../../components/SignInForm/SignInForm';
 import classes from './SignIn.module.scss'
 
-function SignIn() {
-    return ( <div className={classes["form-container"]}>
-        <SignInForm/>
-    </div> );
+function SignIn({ isLogInFailed }) {
+
+
+    return (<div className={classes["form-container"]}>
+        <div className="div">
+        </div>
+        {isLogInFailed && <Alert
+            style={{
+                position: 'absolute',
+                width: '384px',
+                height:'40px'
+            }}
+            message="can't log in"
+            type="error" />}
+        <SignInForm />
+    </div>);
 }
 
-export default SignIn;
+function mstp(s) {
+    return {
+        isLogInFailed: s.auth.isLogInFailed
+    }
+}
+export default connect(mstp)(SignIn);

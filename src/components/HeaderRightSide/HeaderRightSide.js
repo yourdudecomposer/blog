@@ -2,17 +2,16 @@ import React from 'react';
 import classes from './HeaderRightSide.module.scss';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {removeToken}from '../../redux/actions/actions';
+import {logOut}from '../../redux/actions/actions';
 
-function HeaderRightSide({ dispatch,token }) {
+function HeaderRightSide({ dispatch,isLoggedIn }) {
 
-    function logOut() {
-
-        dispatch(removeToken())
-
+    function exit() {
+        localStorage.removeItem("token")
+        dispatch(logOut())
     }
 
-    return !token ?
+    return !isLoggedIn ?
         <div className={classes["header-right-side"]}>
 
             <Link to='/sign-in'>
@@ -29,7 +28,7 @@ function HeaderRightSide({ dispatch,token }) {
                 <button className={classes['create-article']}>Create article</button>
             </Link>
             <Link to='/'>
-                <button onClick={logOut} className={classes['log-out']}>Log Out</button>
+                <button onClick={exit} className={classes['log-out']}>Log Out</button>
             </Link>
         </div>
 
@@ -37,7 +36,7 @@ function HeaderRightSide({ dispatch,token }) {
 
 function mstp(s) {
     return {
-        token:s.auth.token
+        isLoggedIn:s.auth.isLoggedIn
     }
 }
 

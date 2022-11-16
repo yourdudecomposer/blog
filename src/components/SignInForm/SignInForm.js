@@ -7,12 +7,12 @@ import SubmitButton from '../ui/SubmitButton/SubmitButton';
 import classes from './SignInForm.module.scss';
 import { errorStyle } from '../../assets/errorStyle';
 import api from '../../services/Api/Api';
-import { saveToken } from '../../redux/actions/actions';
-import {connect} from 'react-redux'
+import { logIn,loginFailed } from '../../redux/actions/actions';
+import { connect } from 'react-redux'
 
-function SignInForm({dispatch}) {
+function SignInForm({ dispatch }) {
 
-    const { register, handleSubmit, formState: { errors },  } = useForm();
+    const { register, handleSubmit, formState: { errors }, } = useForm();
 
     const onSubmit = data => {
         const dataForSend = {
@@ -21,11 +21,11 @@ function SignInForm({dispatch}) {
                 password: data.password
             }
         }
-        console.log('asdfdassdfs')
 
         api.loginUser(dataForSend)
-            .then(res => dispatch(saveToken(res.user.token)))
-            .catch(err=>console.log(err))
+            .then(res => localStorage.setItem('token',res.user.token))
+            .then(() => dispatch(logIn()))
+            .catch(err => dispatch(loginFailed(err)))
     }
 
 
@@ -69,4 +69,4 @@ function SignInForm({dispatch}) {
 }
 
 
-export default  connect()(SignInForm)
+export default connect()(SignInForm)

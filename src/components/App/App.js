@@ -17,13 +17,17 @@ import Article from '../../pages/Article/Article';
 import SignUp from "../../pages/SignUp/SignUp";
 import Profile from '../../pages/Profile/Profile';
 import { connect } from 'react-redux';
+import { logIn } from '../../redux/actions/actions';
 
 
-function App({token}) {
+function App({ dispatch, isLoggedIn }) {
 
-
+  useEffect(() => {
+    localStorage.getItem('token') && dispatch(logIn())
+  }, [])
 
   return (
+
     <Router>
       <div className={module["wrapper"]}>
         <Header />
@@ -33,7 +37,7 @@ function App({token}) {
               <MainPage />
             </Route>
             <Route path={'/sign-in'}>
-              {token ? <Redirect to="/articles" /> : <SignIn />}
+              {isLoggedIn ? <Redirect to="/articles" /> : <SignIn />}
             </Route>
             <Route path={'/sign-up'}>
               <SignUp />
@@ -61,8 +65,8 @@ function App({token}) {
 }
 
 function mstp(s) {
- return{
-  token:s.auth.token
- } 
+  return {
+    isLoggedIn: s.auth.isLoggedIn
+  }
 }
-export default connect(mstp) (App);
+export default connect(mstp)(App);

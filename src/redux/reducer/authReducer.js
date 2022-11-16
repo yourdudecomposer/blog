@@ -1,27 +1,33 @@
-import { SAVE_TOKEN, REMOVE_TOKEN } from '../actions/actions'
+import { LOG_IN, LOG_OUT, LOG_IN_FAILED } from '../actions/actions'
 
 const initalState = {
-    token: null
+    isLoggedIn: false,
+    isLogInFailed: false,
 }
 
 
 export default function authReducer(state = initalState, action) {
     console.log(action)
     switch (action.type) {
-        case SAVE_TOKEN:
-            console.log('SAVE_TOKEN')
-           localStorage.setItem("token", action.payload)
-
+        case LOG_IN:
+            console.log('LOG_IN ')
             return {
                 ...state,
-                token: action.payload
+                isLoggedIn: true,
+                isLogInFailed: false,
             };
-        case REMOVE_TOKEN:
-            console.log('REMOVE_TOKEN')
-            localStorage.removeItem("token")
+        case LOG_OUT:
+            console.log('LOG_OUT')
             return {
                 ...state,
-                token: null
+                isLoggedIn: false,
+
+            };
+        case LOG_IN_FAILED:
+            console.log('LOG_IN_FAILED')
+            return {
+                ...state,
+                isLogInFailed: true,
             };
 
 

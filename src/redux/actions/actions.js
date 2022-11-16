@@ -9,8 +9,9 @@ export const FETCH_ARTICLE_BEGIN = 'FETCH_ARTICLE_BEGIN';
 export const FETCH_ARTICLE_SUCCESS = 'FETCH_ARTICLE_SUCCESS';
 export const FETCH_ARTICLE_FAILURE = 'FETCH_ARTICLE_FAILURE';
 
-export const SAVE_TOKEN = 'SAVE_TOKEN';
-export const REMOVE_TOKEN = 'REMOVE_TOKEN';
+export const LOG_IN  = 'LOG_IN ';
+export const LOG_OUT = 'LOG_OUT';
+export const LOG_IN_FAILED = 'LOG_IN_FAILED';
 
 export const fetchArticlesBegin = () => ({
     type: FETCH_ARTICLES_BEGIN
@@ -44,12 +45,14 @@ export const fetchArticleFailure = error => ({
 
 
 
-export const saveToken = token => ({
-    type: SAVE_TOKEN,
-    payload:  token 
+export const logIn = () => ({
+    type: LOG_IN ,
 });
-export const removeToken = token => ({
-    type: REMOVE_TOKEN,
+export const logOut = () => ({
+    type: LOG_OUT,
+});
+export const loginFailed = () => ({
+    type: LOG_IN_FAILED,
 });
 
 
