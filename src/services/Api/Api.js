@@ -23,7 +23,10 @@ class Api {
             },
             body: JSON.stringify(data) 
         });
-        return response.json();
+        if (response.status === 200) {
+            return response.json();
+        }
+        else throw new Error('Can\'t register')
 
     }
 
@@ -39,6 +42,31 @@ class Api {
         if (response.ok)  return response.json();
         else throw new Error('Can\'t login')
     }
-
+    updateUser = async (data) => {
+        console.log(data)
+        const response = await fetch(`${this.url}user`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token ' + JSON.parse(localStorage.getItem('user')).token
+            },
+            body: JSON.stringify(data) 
+        });
+        console.log(response)
+        if (response.ok)  return response.json();
+        else throw new Error('Can\'t update')
+    }
+    geteUser = async () => {
+        const response = await fetch(`${this.url}user`, {
+            headers: {
+                'Authorization': 'Token ' + JSON.parse(localStorage.getItem('user')).token
+            },
+        });
+        if (response.ok)  return response.json();
+        else throw new Error('Can\'t get user')
+    }
 }
+
+
+
 export default new Api();

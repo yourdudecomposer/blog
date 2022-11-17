@@ -2,6 +2,22 @@
 
 
 .header-right-side {
+    .user {
+        display: inline-block;
+        padding: 0 27px;
+    }
+
+.user-name{
+    color: color.$text;
+}
+
+    .user-avatar {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-left: 13px;
+    }
 
     button {
         width: 109px;
@@ -31,5 +47,18 @@
             line-height: 22px;
             border-radius: 5px;
         }
+
+
     }
+
+}
+
+@media (max-width: 767px) {
+
+    .header-right-side {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
 }

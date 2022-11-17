@@ -15,3 +15,14 @@
     }
 
 }
+
+
+@media (max-width: 767px){
+
+    .header {
+flex-direction: column;    
+    height: initial;
+    padding-bottom: 5px;
+    }
+
+}

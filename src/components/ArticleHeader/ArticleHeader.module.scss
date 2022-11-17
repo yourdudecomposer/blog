@@ -73,8 +73,10 @@
 
         .article-header__author-img {
             grid-area: 1 / 2 / 3 / 3;
-            max-width: 46px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
+            object-fit: cover;
 
         }
     }

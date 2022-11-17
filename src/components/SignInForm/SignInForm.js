@@ -23,7 +23,7 @@ function SignInForm({ dispatch }) {
         }
 
         api.loginUser(dataForSend)
-            .then(res => localStorage.setItem('token',res.user.token))
+            .then(res => localStorage.setItem('user',JSON.stringify(res.user)))
             .then(() => dispatch(logIn()))
             .catch(err => dispatch(loginFailed(err)))
     }
@@ -58,7 +58,6 @@ function SignInForm({ dispatch }) {
 
                 })} placeholder='Password' />
             <p className={classes['error-message']}>{errors.password?.message}</p>
-
 
 
             <SubmitButton label='Login' />

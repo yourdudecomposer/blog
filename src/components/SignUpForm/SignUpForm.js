@@ -8,7 +8,9 @@ import SubmitButton from '../ui/SubmitButton/SubmitButton';
 import classes from './SignUpForm.module.scss';
 import { errorStyle } from '../../assets/errorStyle';
 import api from '../../services/Api/Api';
-export default function App() {
+import { logIn } from '../../redux/actions/actions';
+import { connect } from 'react-redux';
+ function App({dispatch}) {
 
 
 
@@ -26,9 +28,15 @@ export default function App() {
             }
         }
         api.registerUser(dataForSend)
-            .then(res => console.log(res))
-        console.log(data);
+            .then(res =>  localStorage
+                .setItem('user', JSON.stringify(res.user)))
+            .then(()=>{
+                dispatch(logIn())
+            })
+            .catch((err)=>console.log(err))
     }
+
+
     return (
         <form className={classes['form']} onSubmit={handleSubmit(onSubmit)}>
             <FormHeader title='Create new account' />
@@ -114,3 +122,5 @@ export default function App() {
         </form>
     );
 }
+
+export default connect()(App)

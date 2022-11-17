@@ -23,7 +23,7 @@ import { logIn } from '../../redux/actions/actions';
 function App({ dispatch, isLoggedIn }) {
 
   useEffect(() => {
-    localStorage.getItem('token') && dispatch(logIn())
+    localStorage.getItem('user') && dispatch(logIn())
   }, [])
 
   return (
@@ -40,7 +40,8 @@ function App({ dispatch, isLoggedIn }) {
               {isLoggedIn ? <Redirect to="/articles" /> : <SignIn />}
             </Route>
             <Route path={'/sign-up'}>
-              <SignUp />
+            {isLoggedIn ? <Redirect to="/articles" /> : <SignUp />}
+              
             </Route>
             <Route path={'/profile'}>
               <Profile />

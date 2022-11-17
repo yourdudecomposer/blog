@@ -7,7 +7,7 @@ import {logOut}from '../../redux/actions/actions';
 function HeaderRightSide({ dispatch,isLoggedIn }) {
 
     function exit() {
-        localStorage.removeItem("token")
+        localStorage.removeItem("user")
         dispatch(logOut())
     }
 
@@ -27,6 +27,14 @@ function HeaderRightSide({ dispatch,isLoggedIn }) {
             <Link to='/create'>
                 <button className={classes['create-article']}>Create article</button>
             </Link>
+            <Link to='/profile'>
+            <div  className={classes["user"]}>
+                <span className={classes["user-name"]}>
+                {JSON.parse(localStorage.getItem('user')).username}
+                </span>
+                <img src={JSON.parse(localStorage.getItem('user')).image} alt="" className={classes["user-avatar" ]}/>
+            </div>
+            </Link>
             <Link to='/'>
                 <button onClick={exit} className={classes['log-out']}>Log Out</button>
             </Link>
@@ -41,3 +49,4 @@ function mstp(s) {
 }
 
 export default connect(mstp)(HeaderRightSide);
+
