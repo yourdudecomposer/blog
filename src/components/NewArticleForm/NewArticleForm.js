@@ -24,7 +24,7 @@ function NewArticleForm() {
             <textarea id='text' placeholder="Text"  {...register("text", { required: true })}></textarea>
             {errors.text && <span className={classes['error-message']}>Title is required</span>}
 
-            <TagField />
+            <TagField register={register} />
             <SubmitButton label='Send' />
         </form>
     );
