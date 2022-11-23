@@ -1,8 +1,10 @@
-import { LOG_IN, LOG_OUT, LOG_IN_FAILED } from '../actions/actions'
+import { LOG_IN, LOG_OUT, LOG_IN_FAILED,SIGN_UP_FAILED,EDIT_FAILED,SIGN_UP_SUCCESS,EDIT_SUCCESS } from '../actions/actions'
 
 const initalState = {
     isLoggedIn: false,
     isLogInFailed: false,
+    isSignUpFailed:null,
+    isEditFailed:null,
 }
 
 
@@ -28,6 +30,30 @@ export default function authReducer(state = initalState, action) {
             return {
                 ...state,
                 isLogInFailed: true,
+            };
+        case SIGN_UP_FAILED:
+            console.log('SIGN_UP_FAILED')
+            return {
+                ...state,
+                isSignUpFailed: action.payload.message,
+            };
+        case SIGN_UP_SUCCESS:
+            console.log('SIGN_UP_SUCCESS')
+            return {
+                ...state,
+                isSignUpFailed: null,
+            };
+        case EDIT_FAILED:
+            console.log('EDIT_FAILED')
+            return {
+                ...state,
+                isEditFailed: action.payload.message,
+            };
+        case EDIT_SUCCESS:
+            console.log('EDIT_SUCCESS')
+            return {
+                ...state,
+                isEditFailed:null,
             };
 
 

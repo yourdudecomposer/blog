@@ -8,13 +8,11 @@ function SignIn({ isLogInFailed }) {
 
 
     return (<div className={classes["form-container"]}>
-        <div className="div">
-        </div>
         {isLogInFailed && <Alert
             style={{
                 position: 'absolute',
                 width: '384px',
-                height:'40px'
+                height: '40px'
             }}
             message="can't log in"
             type="error" />}

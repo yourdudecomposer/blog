@@ -2,15 +2,35 @@ import React from 'react';
 import classes from './HeaderRightSide.module.scss';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {logOut}from '../../redux/actions/actions';
+import { logOut } from '../../redux/actions/actions';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import img from '../../assets/img/avatar.svg';
 
-function HeaderRightSide({ dispatch,isLoggedIn }) {
+function HeaderRightSide({ dispatch, isLoggedIn }) {
 
     function exit() {
         localStorage.removeItem("user")
         dispatch(logOut())
     }
 
+    async function getImg(url) {
+
+        try {
+            const res = await fetch(url);
+            const blob = await res.blob()
+            const blobUrl = URL.createObjectURL(blob);
+            setAvatar(blobUrl);
+        } catch (error) {
+            setAvatar(img)
+        }
+    }
+
+    const [avatar, setAvatar] = useState();
+    const imgFromLocalStorage = JSON.parse(localStorage.getItem('user'))?.image;
+    useEffect(() => {
+        !imgFromLocalStorage ? setAvatar(img) : getImg(imgFromLocalStorage)
+    }, [imgFromLocalStorage])
     return !isLoggedIn ?
         <div className={classes["header-right-side"]}>
 
@@ -24,16 +44,16 @@ function HeaderRightSide({ dispatch,isLoggedIn }) {
         :
         <div className={classes["header-right-side"]}>
 
-            <Link to='/create'>
+            <Link to='/new-article'>
                 <button className={classes['create-article']}>Create article</button>
             </Link>
             <Link to='/profile'>
-            <div  className={classes["user"]}>
-                <span className={classes["user-name"]}>
-                {JSON.parse(localStorage.getItem('user')).username}
-                </span>
-                <img src={JSON.parse(localStorage.getItem('user')).image} alt="" className={classes["user-avatar" ]}/>
-            </div>
+                <div className={classes["user"]}>
+                    <span className={classes["user-name"]}>
+                        {JSON.parse(localStorage.getItem('user')).username}
+                    </span>
+                    <img src={avatar} alt="" className={classes["user-avatar"]} />
+                </div>
             </Link>
             <Link to='/'>
                 <button onClick={exit} className={classes['log-out']}>Log Out</button>
@@ -44,7 +64,7 @@ function HeaderRightSide({ dispatch,isLoggedIn }) {
 
 function mstp(s) {
     return {
-        isLoggedIn:s.auth.isLoggedIn
+        isLoggedIn: s.auth.isLoggedIn
     }
 }
 

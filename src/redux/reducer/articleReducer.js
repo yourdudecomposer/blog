@@ -1,7 +1,7 @@
 import { FETCH_ARTICLE_BEGIN, FETCH_ARTICLE_SUCCESS, FETCH_ARTICLE_FAILURE } from '../actions/actions'
 
 const initalState = {
-    article: 'dfgdsfgdfg',
+    article: '',
     loading: false,
     error: null,
 }

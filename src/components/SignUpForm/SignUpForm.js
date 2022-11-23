@@ -8,9 +8,9 @@ import SubmitButton from '../ui/SubmitButton/SubmitButton';
 import classes from './SignUpForm.module.scss';
 import { errorStyle } from '../../assets/errorStyle';
 import api from '../../services/Api/Api';
-import { logIn } from '../../redux/actions/actions';
+import { logIn, signUpFailed, signUpSuccess } from '../../redux/actions/actions';
 import { connect } from 'react-redux';
- function App({dispatch}) {
+function App({ dispatch }) {
 
 
 
@@ -18,7 +18,7 @@ import { connect } from 'react-redux';
 
     let currentPassword = watch("password", "");
 
-    
+
     const onSubmit = data => {
         const dataForSend = {
             user: {
@@ -28,12 +28,15 @@ import { connect } from 'react-redux';
             }
         }
         api.registerUser(dataForSend)
-            .then(res =>  localStorage
+            .then(res => localStorage
                 .setItem('user', JSON.stringify(res.user)))
-            .then(()=>{
+            .then(() => {
                 dispatch(logIn())
             })
-            .catch((err)=>console.log(err))
+            .then(() => {
+                dispatch(signUpSuccess())
+            })
+            .catch((err) => dispatch(signUpFailed(err)))
     }
 
 

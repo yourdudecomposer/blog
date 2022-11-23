@@ -9,7 +9,7 @@ import classes from './Article.module.scss'
 import { fetchArticle } from '../../redux/actions/actions';
 
 
-function Article({dispatch,article,loading,error}) {
+function Article({ dispatch, article, loading, error }) {
 
     const { slug } = useParams();
 
@@ -18,7 +18,7 @@ function Article({dispatch,article,loading,error}) {
         dispatch(fetchArticle(slug))
     }, [])
 
-    
+
     if (error) {
         return (<div className={classes['server-error']}>
             Something wrong with server</div>);
@@ -26,7 +26,7 @@ function Article({dispatch,article,loading,error}) {
 
     if (loading) {
         return (<div className={classes['loading']}>
-          loading</div>);
+            loading</div>);
     }
 
 

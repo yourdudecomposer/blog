@@ -18,9 +18,10 @@ import SignUp from "../../pages/SignUp/SignUp";
 import Profile from '../../pages/Profile/Profile';
 import { connect } from 'react-redux';
 import { logIn } from '../../redux/actions/actions';
+import NewArticle from '../../pages/NewArticle/NewArticle';
 
 
-function App({ dispatch, isLoggedIn }) {
+function App({ dispatch, isLoggedIn, isEditFailed }) {
 
   useEffect(() => {
     localStorage.getItem('user') && dispatch(logIn())
@@ -40,8 +41,8 @@ function App({ dispatch, isLoggedIn }) {
               {isLoggedIn ? <Redirect to="/articles" /> : <SignIn />}
             </Route>
             <Route path={'/sign-up'}>
-            {isLoggedIn ? <Redirect to="/articles" /> : <SignUp />}
-              
+              {isLoggedIn ? <Redirect to="/articles" /> : <SignUp />}
+
             </Route>
             <Route path={'/profile'}>
               <Profile />
@@ -51,6 +52,9 @@ function App({ dispatch, isLoggedIn }) {
             </Route>
             <Route path={`/articles/:slug`}>
               <Article />
+            </Route>
+            <Route path={'/new-article'}>
+              <NewArticle/>
             </Route>
 
 

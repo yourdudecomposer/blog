@@ -6,19 +6,24 @@ import SubmitButton from '../ui/SubmitButton/SubmitButton';
 import classes from './EditProfileForm.module.scss';
 import { errorStyle } from '../../assets/errorStyle';
 import api from '../../services/Api/Api';
-export default function EditProfileForm() {
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { editFailed, editSuccess } from '../../redux/actions/actions';
+
+ function EditProfileForm({history ,dispatch}) {
 
     const { register, handleSubmit, formState: { errors }, control, watch } = useForm();
 
 
     const onSubmit = data => {
-        console.log(data)
         api.updateUser({ user: data })
             .then(res => {
                 localStorage
                     .setItem('user', JSON.stringify(res.user))
             })
-            .then(console.log(445))
+            .then(()=>dispatch(editSuccess()))
+            .then(()=>history.push('/articles'))
+            .catch(err=>dispatch(editFailed(err)))
     };
     return (
         <form className={classes['form']} onSubmit={handleSubmit(onSubmit)}>
@@ -81,3 +86,5 @@ export default function EditProfileForm() {
         </form>
     );
 }
+
+export default withRouter( connect()(EditProfileForm))

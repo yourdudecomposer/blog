@@ -6,10 +6,10 @@ class Api {
     limit = 20;
 
     getArticles = async (ofset = 0) => {
-
         let response = await fetch(`${this.url}articles/?limit=${this.limit}&offset=${ofset}`);
         return response.json();
     }
+
     getArticle = async (slug) => {
         let response = await fetch(`${this.url}articles/${slug}`);
         return response.json();
@@ -26,8 +26,8 @@ class Api {
         if (response.status === 200) {
             return response.json();
         }
-        else throw new Error('Can\'t register')
-
+        let res = await response.json()
+         throw new Error(JSON.stringify(res.errors))
     }
 
     loginUser = async (data) => {
@@ -43,7 +43,6 @@ class Api {
         else throw new Error('Can\'t login')
     }
     updateUser = async (data) => {
-        console.log(data)
         const response = await fetch(`${this.url}user`, {
             method: 'PUT',
             headers: {
@@ -52,10 +51,10 @@ class Api {
             },
             body: JSON.stringify(data) 
         });
-        console.log(response)
         if (response.ok)  return response.json();
         else throw new Error('Can\'t update')
     }
+
     geteUser = async () => {
         const response = await fetch(`${this.url}user`, {
             headers: {

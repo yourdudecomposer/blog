@@ -12,6 +12,10 @@ export const FETCH_ARTICLE_FAILURE = 'FETCH_ARTICLE_FAILURE';
 export const LOG_IN  = 'LOG_IN ';
 export const LOG_OUT = 'LOG_OUT';
 export const LOG_IN_FAILED = 'LOG_IN_FAILED';
+export const SIGN_UP_FAILED = 'SIGN_UP_FAILED';
+export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
+export const EDIT_FAILED = 'EDIT_FAILED';
+export const EDIT_SUCCESS = 'EDIT_SUCCESS';
 
 export const fetchArticlesBegin = () => ({
     type: FETCH_ARTICLES_BEGIN
@@ -54,6 +58,20 @@ export const logOut = () => ({
 export const loginFailed = () => ({
     type: LOG_IN_FAILED,
 });
+export const signUpFailed = (err) => ({
+    type: SIGN_UP_FAILED,
+    payload:err
+});
+export const signUpSuccess = () => ({
+    type: SIGN_UP_SUCCESS,
+});
+export const editFailed = (err) => ({
+    type: EDIT_FAILED,
+    payload:err
+});
+export const editSuccess = (err) => ({
+    type: EDIT_SUCCESS,
+});
 
 
 
@@ -64,7 +82,7 @@ export function fetchArticles(ofset) {
             const res = await api.getArticles(ofset)
             if (res.articles) {
                 dispatch(fetchArticlesSuccess(res));
-            } else throw new Error('there is no article from server')
+            } else throw new Error('there is no articles from server')
         } catch (error) {
             return dispatch(fetchArticlesFailure(error));
         }

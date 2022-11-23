@@ -1,15 +1,13 @@
 import React from 'react';
 import classes from './ArticleHeader.module.scss'
 import like from '../../assets/img/heart.svg';
-import avatar from '../../assets/img/avatar.png';
 import Tag from '../ui/Tag/Tag';
 import { format } from 'date-fns'
 import { Link, useRouteMatch } from 'react-router-dom';
-
-function ArticleHeader({ title, createdAt = 0, favoritesCount, slug, tagList=[], author: { username, image } = 2 }) {
-
+import avatar from '../../assets/img/avatar.svg'
 
 
+function ArticleHeader({ title, createdAt, favoritesCount, slug, tagList, author: { username, image } }) {
 
     return (
         <header className={classes["article-header"]}>
@@ -34,4 +32,15 @@ function ArticleHeader({ title, createdAt = 0, favoritesCount, slug, tagList=[],
     );
 }
 
+
+
+ArticleHeader.defaultProps = {
+    createdAt: 0,
+    tagList: [],
+    author: {
+        username: 'John Doe',
+        image: avatar,
+    }
+
+}
 export default ArticleHeader;
