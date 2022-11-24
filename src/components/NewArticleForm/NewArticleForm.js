@@ -7,7 +7,7 @@ import classes from './NewArticleForm.module.scss'
 
 function NewArticleForm() {
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register,unregister, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => console.log(data);
 
     return (
@@ -24,7 +24,7 @@ function NewArticleForm() {
             <textarea id='text' placeholder="Text"  {...register("text", { required: true })}></textarea>
             {errors.text && <span className={classes['error-message']}>Title is required</span>}
 
-            <TagField register={register} />
+            <TagField unregister={unregister} register={register} />
             <SubmitButton label='Send' />
         </form>
     );
