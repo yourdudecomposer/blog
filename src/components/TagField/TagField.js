@@ -29,7 +29,6 @@ function TagField({ register, unregister }) {
                     key={id}
                     id={id}
                     register={register}
-                    unregister={unregister}
                     deleteTag={deleteTag}
                 />
             })}

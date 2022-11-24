@@ -17,12 +17,17 @@
 }
 
 
-@media (max-width: 767px){
+@media (max-width: 625px){
 
     .header {
 flex-direction: column;    
     height: initial;
     padding-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    a:first-of-type{
+        margin-bottom: 15px;
+    }
     }
 
 }
