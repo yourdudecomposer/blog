@@ -25,6 +25,7 @@ import { editFailed, editSuccess } from '../../redux/actions/actions';
             .then(()=>history.push('/articles'))
             .catch(err=>dispatch(editFailed(err)))
     };
+    
     return (
         <form className={classes['form']} onSubmit={handleSubmit(onSubmit)}>
             <FormHeader title='Edit Profile' />

@@ -20,7 +20,6 @@ function ArticleList({ dispatch, articles,loading,error }) {
           loading</div>);
     }
 
-
     return (
         <section className={module['article-list']}>
             {articles

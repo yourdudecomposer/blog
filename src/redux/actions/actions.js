@@ -17,6 +17,11 @@ export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
 export const EDIT_FAILED = 'EDIT_FAILED';
 export const EDIT_SUCCESS = 'EDIT_SUCCESS';
 
+export const CREATE_ARTICLE_BEGIN = 'CREATE_ARTICLE_BEGIN';
+export const CREATE_ARTICLE_SUCCESS = 'CREATE_ARTICLE_SUCCESS';
+export const CREATE_ARTICLE_FAILURE = 'CREATE_ARTICLE_FAILURE';
+
+
 export const fetchArticlesBegin = () => ({
     type: FETCH_ARTICLES_BEGIN
 });
@@ -74,6 +79,19 @@ export const editSuccess = (err) => ({
 });
 
 
+export const startCreateArticle = () => ({
+    type: CREATE_ARTICLE_BEGIN,
+});
+
+export const successCreateArticle = () => ({
+    type: CREATE_ARTICLE_SUCCESS,
+});
+
+export const failtureCreateArticle = (err) => ({
+    type: CREATE_ARTICLE_FAILURE,
+    payload:err
+});
+
 
 export function fetchArticles(ofset) {
     return async dispatch => {
@@ -100,6 +118,23 @@ export function fetchArticle(slug) {
             } else throw new Error('there is no article from server')
         } catch (error) {
             return dispatch(fetchArticleFailure(error));
+        }
+    };
+}
+
+export function createArticle(data) {
+    return async dispatch => {
+
+        dispatch(startCreateArticle());
+        try {
+            const res = await api.createArticle(data)
+            if (res.article) {
+                dispatch(successCreateArticle());
+            } else throw new Error('Something go wrong')
+
+  
+        } catch (error) {
+            return dispatch(failtureCreateArticle(error));
         }
     };
 }
