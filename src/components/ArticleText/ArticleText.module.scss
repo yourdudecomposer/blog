@@ -1,9 +1,9 @@
-@use '../../colors.scss' as colors;
+@use '../../colors.scss' as color;
 
 .article-text {
-    color: colors.$text;
+    color: color.$text;
     margin-top: 25px;
-    
+    position: relative;
     ol{
         margin-left: 20px;
     }
@@ -12,6 +12,7 @@
     p {
         font-size: 14px;
         line-height: 22px;
+        overflow-wrap: break-word;
     }
 
     h1 {
@@ -38,5 +39,46 @@
     h6 {
         font-size: 18px;
         line-height: 28px;
+    }
+
+}
+
+.buttons{
+    // border: solid;
+    position: absolute;
+    width: 169px;
+    height: 31px;
+    right: 0;
+    top: -60px;
+
+    button {
+      
+        border-radius: 6px;
+        font-family: Roboto;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        height: 31px;
+        background-color: #fff;
+    }
+
+    .delete {
+        width: 78px;
+        border: 1px solid color.$highlight-color;
+        color: color.$highlight-color;
+        margin-right: 12px;
+    }
+    .edit{
+        width: 65px;
+        border: 1px solid color.$success;
+        color: color.$success;
+    }
+
+}
+
+@media (max-width: 555px){
+    .buttons{
+        position: initial;
+        margin-bottom: 20px;
     }
 }

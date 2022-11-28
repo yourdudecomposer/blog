@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import NewArticleForm from '../../components/NewArticleForm/NewArticleForm';
-import classes from './NewArticle.module.scss'
+import classes from './EditArticle.module.scss'
 import { Alert, Spin } from 'antd';
 
 
-function NewArticle({ loading, error }) {
+function EditArticle({ loading, error }) {
 
 
     if (loading) {
@@ -36,7 +36,7 @@ function NewArticle({ loading, error }) {
     }
 
     return (<div className={classes["form-container"]}>
-        <NewArticleForm label = 'Create new article' />
+        <NewArticleForm label='Edit article' />
     </div>);
 }
 
@@ -47,4 +47,4 @@ function mstp(s) {
         crated: s.create.crated
     }
 }
-export default connect(mstp)(NewArticle);
+export default connect(mstp)(EditArticle);

@@ -3,6 +3,7 @@ import module from './App.module.scss';
 import MainPage from '../../pages/MainPage/MainPage';
 import SignIn from '../../pages/SignIn/SignIn';
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
+
 import { useEffect } from 'react';
 import {
   BrowserRouter as Router,
@@ -29,7 +30,7 @@ function App({ dispatch, isLoggedIn, isEditFailed }) {
 
   return (
 
-    <Router>
+    <Router >
       <div className={module["wrapper"]}>
         <Header />
         <main className={module["main"]}>
@@ -50,14 +51,15 @@ function App({ dispatch, isLoggedIn, isEditFailed }) {
             <Route exact path={'/articles'}>
               <MainPage />
             </Route>
-            <Route path={`/articles/:slug`}>
+            <Route exact path={`/articles/:slug`}>
               <Article />
             </Route>
-            <Route path={'/new-article'}>
-              <NewArticle/>
+            <Route path={`/articles/:slug/edit`}>
+              <div className="div">edit article</div>
             </Route>
-
-
+            <Route path={'/new-article'}>
+              {!isLoggedIn ? <Redirect to="/sign-in" /> : <NewArticle />}
+            </Route>
           </Switch>
 
 

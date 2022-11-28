@@ -4,11 +4,12 @@ import TagField from '../TagField/TagField';
 import FormHeader from '../ui/FormHeader/FormHeader';
 import SubmitButton from '../ui/SubmitButton/SubmitButton';
 import classes from './NewArticleForm.module.scss'
-import api from '../../services/Api/Api';
 import { createArticle } from '../../redux/actions/actions';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { useEffect } from 'react';
 
-function NewArticleForm({ dispatch }) {
+function NewArticleForm({ dispatch, history,label }) {
 
     const { register, unregister, handleSubmit, watch, formState: { errors } } = useForm();
 
@@ -35,15 +36,16 @@ function NewArticleForm({ dispatch }) {
     }
 
 
-    const onSubmit = data => {
-        dispatch(createArticle(makeData(data)))
-    };
+    const onSubmit =  data => {
+          dispatch(createArticle(makeData(data),history));
 
+
+    };
 
 
     return (
         <form className={classes['form']} onSubmit={handleSubmit(onSubmit)}>
-            <FormHeader title='Create new article' />
+            <FormHeader title={label} />
             <label htmlFor="title">Title</label>
 
             <input id='title' placeholder="Title"  {...register("title", { required: true })} />
@@ -61,4 +63,10 @@ function NewArticleForm({ dispatch }) {
     );
 }
 
-export default connect()(NewArticleForm);
+function mstp(s) {
+    return {
+        created: s.create.created
+    }
+}
+
+export default withRouter(connect(mstp)(NewArticleForm));

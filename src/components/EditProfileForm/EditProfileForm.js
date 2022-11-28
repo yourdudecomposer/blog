@@ -10,7 +10,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { editFailed, editSuccess } from '../../redux/actions/actions';
 
- function EditProfileForm({history ,dispatch}) {
+function EditProfileForm({ history, dispatch }) {
 
     const { register, handleSubmit, formState: { errors }, control, watch } = useForm();
 
@@ -21,11 +21,11 @@ import { editFailed, editSuccess } from '../../redux/actions/actions';
                 localStorage
                     .setItem('user', JSON.stringify(res.user))
             })
-            .then(()=>dispatch(editSuccess()))
-            .then(()=>history.push('/articles'))
-            .catch(err=>dispatch(editFailed(err)))
+            .then(() => dispatch(editSuccess()))
+            .then(() => history.push('/articles'))
+            .catch(err => dispatch(editFailed(err)))
     };
-    
+
     return (
         <form className={classes['form']} onSubmit={handleSubmit(onSubmit)}>
             <FormHeader title='Edit Profile' />
@@ -88,4 +88,4 @@ import { editFailed, editSuccess } from '../../redux/actions/actions';
     );
 }
 
-export default withRouter( connect()(EditProfileForm))
+export default withRouter(connect()(EditProfileForm))

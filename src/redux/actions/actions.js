@@ -1,6 +1,5 @@
 import api from '../../services/Api/Api'
 
-
 export const FETCH_ARTICLES_BEGIN = 'FETCH_ARTICLES_BEGIN';
 export const FETCH_ARTICLES_SUCCESS = 'FETCH_ARTICLES_SUCCESS';
 export const FETCH_ARTICLES_FAILURE = 'FETCH_ARTICLES_FAILURE';
@@ -100,6 +99,7 @@ export function fetchArticles(ofset) {
             const res = await api.getArticles(ofset)
             if (res.articles) {
                 dispatch(fetchArticlesSuccess(res));
+                window.scrollTo(0, 0);
             } else throw new Error('there is no articles from server')
         } catch (error) {
             return dispatch(fetchArticlesFailure(error));
@@ -122,14 +122,14 @@ export function fetchArticle(slug) {
     };
 }
 
-export function createArticle(data) {
+export function createArticle(data,history) {
     return async dispatch => {
-
         dispatch(startCreateArticle());
         try {
             const res = await api.createArticle(data)
             if (res.article) {
-                dispatch(successCreateArticle());
+                await dispatch(successCreateArticle());
+                history.push('./')
             } else throw new Error('Something go wrong')
 
   

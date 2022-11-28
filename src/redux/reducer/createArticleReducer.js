@@ -3,7 +3,6 @@ import { CREATE_ARTICLE_BEGIN, CREATE_ARTICLE_SUCCESS, CREATE_ARTICLE_FAILURE } 
 const initalState = {
     loading: false,
     error: null,
-    created:false
 }
 
 
@@ -22,7 +21,6 @@ export default function createArticleReducer(state = initalState, action) {
                 ...state,
                 loading: false,
                 error: null,
-                created:true
             };
         case CREATE_ARTICLE_FAILURE:
             console.log('CREATE_ARTICLE_FAILURE')
@@ -30,7 +28,6 @@ export default function createArticleReducer(state = initalState, action) {
                 ...state,
                 loading: false,
                 error: action.payload,
-                created:false
             };
 
         default:

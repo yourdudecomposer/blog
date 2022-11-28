@@ -24,6 +24,7 @@ class Api {
             },
             body: JSON.stringify(data)
         });
+        console.log(response)
         if (response.ok) return response.json();
         else throw new Error('Can\'t create article')
     }

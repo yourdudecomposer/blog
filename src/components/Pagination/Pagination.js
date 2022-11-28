@@ -15,6 +15,7 @@ const Pagination = ({ dispatch, articlesCount }) => {
     setPage(page)
     const ofset = api.limit * page - api.limit;
     dispatch(fetchArticles(ofset))
+   
   }
 
 
