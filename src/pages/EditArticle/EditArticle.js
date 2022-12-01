@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import NewArticleForm from '../../components/NewArticleForm/NewArticleForm';
 import classes from './EditArticle.module.scss'
 import { Alert, Spin } from 'antd';
+import { withRouter } from 'react-router-dom';
+import { editArticle, makeData } from '../../redux/actions/actions';
 
-
-function EditArticle({ loading, error }) {
-
+function EditArticle({ history, dispatch,loading, article: {slug, tagList, title, description, body } }) {
 
     if (loading) {
         return (
@@ -19,32 +19,20 @@ function EditArticle({ loading, error }) {
                 }} />
         )
     }
-
-    if (error) {
-        return (
-            <Alert
-                style={{
-                    position: 'absolute',
-                    width: '100%',
-                    top: '100px'
-                }}
-                message={error.message}
-                type="error"
-                showIcon />
-
-        )
-    }
+    const onSubmit = data => {
+        console.log(data)
+        dispatch(editArticle(makeData(data), history, slug));
+    };
 
     return (<div className={classes["form-container"]}>
-        <NewArticleForm label='Edit article' />
+        <NewArticleForm onSubmit={onSubmit} label='Edit article' />
     </div>);
 }
 
 function mstp(s) {
     return {
-        loading: s.create.loading,
-        error: s.create.error,
-        crated: s.create.crated
+        article: s.article.article,
+        loading: s.edit.loading,
     }
 }
-export default connect(mstp)(EditArticle);
+export default withRouter(connect(mstp)(EditArticle));

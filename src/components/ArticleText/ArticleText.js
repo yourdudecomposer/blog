@@ -3,33 +3,70 @@ import classes from './ArticleText.module.scss';
 import ReactMarkdown from 'react-markdown';
 import Modal from '../ui/Modal/Modal';
 import { useState } from 'react';
+import api from '../../services/Api/Api';
+import { Link, withRouter } from 'react-router-dom';
+import { Alert } from 'antd';
 
 
 
-function ArticleText({ body }) {
 
-    const [isShow, setIsShow] = useState(true)
+function ArticleText({ body, slug, author: { username }, history }) {
+    const [isShow, setIsShow] = useState(false)
+    const [isError, setIsError] = useState(false)
 
     function showModal() {
         setIsShow(!isShow)
     }
+    function closeModal() {
+        showModal()
+    }
+    async function sendDeleteRequest() {
+
+        try {
+            await api.deleteArticle(slug)
+            history.push('./')
+        } catch (error) {
+            setIsError(true)
+            setIsShow(false)
+        }
+    }
+
+
 
     return (<section className={classes['article-text']}>
-        <div className={classes["buttons"]} >
+        {username !== JSON.parse(localStorage.getItem('user'))?.username ? null : <div className={classes["buttons"]} >
             <button
                 onClick={showModal}
                 className={classes['delete']}>Delete</button>
-            <Modal style={{
-                display: isShow ? 'block' : 'none'
-            }} />
-            <button
-                onClick={() => console.log('edit')}
-                className={classes['edit']}>Edit</button>
-        </div>
+            <Modal
+                closeModal={closeModal}
+                sendDeleteRequest={sendDeleteRequest}
+                style={{
+                    display: isShow ? 'block' : 'none'
+                }} />
+            <Link to={`/articles/${slug}/edit`}>
+                <button
+                    className={classes['edit']}>Edit</button>
+            </Link>
+        </div>}
+        {isError ? <Alert
+            message="Can' t delete"
+            closable
+
+            type='error'
+        /> : null}
         <ReactMarkdown>
             {body}
         </ReactMarkdown>
     </section>);
 }
 
-export default ArticleText;
+
+ArticleText.defaultProps = {
+
+    author: {
+        username: 'John Doe',
+    }
+
+}
+export default withRouter(ArticleText);

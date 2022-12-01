@@ -20,6 +20,7 @@ import Profile from '../../pages/Profile/Profile';
 import { connect } from 'react-redux';
 import { logIn } from '../../redux/actions/actions';
 import NewArticle from '../../pages/NewArticle/NewArticle';
+import EditArticle from '../../pages/EditArticle/EditArticle';
 
 
 function App({ dispatch, isLoggedIn, isEditFailed }) {
@@ -55,7 +56,7 @@ function App({ dispatch, isLoggedIn, isEditFailed }) {
               <Article />
             </Route>
             <Route path={`/articles/:slug/edit`}>
-              <div className="div">edit article</div>
+              <EditArticle/>
             </Route>
             <Route path={'/new-article'}>
               {!isLoggedIn ? <Redirect to="/sign-in" /> : <NewArticle />}

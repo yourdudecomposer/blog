@@ -1,9 +1,20 @@
 import React from 'react';
 import classes from './Modal.module.scss'
-function Modal({style}) {
-    return ( <div style={style} className={classes["container"]}>
+import icon from "../../../assets/img/icon.svg";
+function Modal({ style, closeModal, sendDeleteRequest }) {
 
-    </div> );
+
+    return (
+        <div style={style} className={classes["container"]}>
+            <img src={icon} alt="" />
+            <p>Are you sure to delete this article?</p>
+
+            <div className={classes["button-container"]}>
+
+                <button onClick={closeModal} className={classes["no"]}>No</button>
+                <button onClick={sendDeleteRequest} className={classes["yes"]}>Yes</button>
+            </div>
+        </div>);
 }
 
 export default Modal;

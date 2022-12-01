@@ -12,7 +12,7 @@ function ArticleList({ dispatch, articles,loading,error }) {
 
     if (error) {
         return (<div className={module['server-error']}>
-            Something wrong with server</div>);
+            Something wrong with server or internet</div>);
     }
 
     if (loading) {

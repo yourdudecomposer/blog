@@ -4,43 +4,20 @@ import TagField from '../TagField/TagField';
 import FormHeader from '../ui/FormHeader/FormHeader';
 import SubmitButton from '../ui/SubmitButton/SubmitButton';
 import classes from './NewArticleForm.module.scss'
-import { createArticle } from '../../redux/actions/actions';
+import { createArticle, makeData } from '../../redux/actions/actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { useEffect } from 'react';
 
-function NewArticleForm({ dispatch, history,label }) {
+
+function NewArticleForm({ onSubmit:onS, dispatch, history, label }) {
 
     const { register, unregister, handleSubmit, watch, formState: { errors } } = useForm();
 
-    function makeData(data) {
-        let tagList =
-            Object.entries(data)
-                .filter(([key, value]) => key.slice(0, 3).includes('tag') && value !== '')
-                .map(el => el[1])
-
-        let {
-            title,
-            description,
-            body
-        } = data;
-
-        return {
-            article: {
-                title,
-                description,
-                body,
-                tagList
-            }
-        }
-    }
 
 
-    const onSubmit =  data => {
-          dispatch(createArticle(makeData(data),history));
 
-
-    };
+    const onSubmit = data => onS(data)
 
 
     return (
@@ -69,4 +46,4 @@ function mstp(s) {
     }
 }
 
-export default withRouter(connect(mstp)(NewArticleForm));
+export default connect(mstp)(NewArticleForm);

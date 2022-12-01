@@ -45,9 +45,8 @@
         max-width: 50%;
         overflow-wrap: anywhere;
         display: grid;
-        display: grid;
         grid-template-columns: auto auto;
-        grid-template-rows: auto auto;
+        grid-template-rows: 28px auto;
         grid-column-gap: 12px;
         grid-row-gap: 0px;
 

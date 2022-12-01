@@ -8,7 +8,7 @@ export const FETCH_ARTICLE_BEGIN = 'FETCH_ARTICLE_BEGIN';
 export const FETCH_ARTICLE_SUCCESS = 'FETCH_ARTICLE_SUCCESS';
 export const FETCH_ARTICLE_FAILURE = 'FETCH_ARTICLE_FAILURE';
 
-export const LOG_IN  = 'LOG_IN ';
+export const LOG_IN = 'LOG_IN ';
 export const LOG_OUT = 'LOG_OUT';
 export const LOG_IN_FAILED = 'LOG_IN_FAILED';
 export const SIGN_UP_FAILED = 'SIGN_UP_FAILED';
@@ -20,6 +20,9 @@ export const CREATE_ARTICLE_BEGIN = 'CREATE_ARTICLE_BEGIN';
 export const CREATE_ARTICLE_SUCCESS = 'CREATE_ARTICLE_SUCCESS';
 export const CREATE_ARTICLE_FAILURE = 'CREATE_ARTICLE_FAILURE';
 
+export const EDIT_ARTICLE_BEGIN = 'EDIT_ARTICLE_BEGIN';
+export const EDIT_ARTICLE_SUCCESS = 'EDIT_ARTICLE_SUCCESS';
+export const EDIT_ARTICLE_FAILURE = 'EDIT_ARTICLE_FAILURE';
 
 export const fetchArticlesBegin = () => ({
     type: FETCH_ARTICLES_BEGIN
@@ -27,12 +30,12 @@ export const fetchArticlesBegin = () => ({
 
 export const fetchArticlesSuccess = payload => ({
     type: FETCH_ARTICLES_SUCCESS,
-    payload:  payload 
+    payload: payload
 });
 
 export const fetchArticlesFailure = error => ({
     type: FETCH_ARTICLES_FAILURE,
-    payload:  error 
+    payload: error
 });
 
 
@@ -43,18 +46,18 @@ export const fetchArticleBegin = () => ({
 
 export const fetchArticleSuccess = payload => ({
     type: FETCH_ARTICLE_SUCCESS,
-    payload:  payload 
+    payload: payload
 });
 
 export const fetchArticleFailure = error => ({
     type: FETCH_ARTICLE_FAILURE,
-    payload:  error 
+    payload: error
 });
 
 
 
 export const logIn = () => ({
-    type: LOG_IN ,
+    type: LOG_IN,
 });
 export const logOut = () => ({
     type: LOG_OUT,
@@ -64,14 +67,14 @@ export const loginFailed = () => ({
 });
 export const signUpFailed = (err) => ({
     type: SIGN_UP_FAILED,
-    payload:err
+    payload: err
 });
 export const signUpSuccess = () => ({
     type: SIGN_UP_SUCCESS,
 });
 export const editFailed = (err) => ({
     type: EDIT_FAILED,
-    payload:err
+    payload: err
 });
 export const editSuccess = (err) => ({
     type: EDIT_SUCCESS,
@@ -88,7 +91,21 @@ export const successCreateArticle = () => ({
 
 export const failtureCreateArticle = (err) => ({
     type: CREATE_ARTICLE_FAILURE,
-    payload:err
+    payload: err
+});
+
+
+export const startEditArticle = () => ({
+    type: EDIT_ARTICLE_BEGIN,
+});
+
+export const successEditArticle = () => ({
+    type: EDIT_ARTICLE_SUCCESS,
+});
+
+export const failtureEditArticle = (err) => ({
+    type: EDIT_ARTICLE_FAILURE,
+    payload: err
 });
 
 
@@ -122,7 +139,7 @@ export function fetchArticle(slug) {
     };
 }
 
-export function createArticle(data,history) {
+export function createArticle(data, history) {
     return async dispatch => {
         dispatch(startCreateArticle());
         try {
@@ -132,9 +149,49 @@ export function createArticle(data,history) {
                 history.push('./')
             } else throw new Error('Something go wrong')
 
-  
+
         } catch (error) {
             return dispatch(failtureCreateArticle(error));
         }
     };
+}
+
+
+export function editArticle(data, history, slug) {
+    return async dispatch => {
+        dispatch(startEditArticle());
+        try {
+            const res = await api.editArticle(data, slug)
+            if (res.article) {
+                await dispatch(successEditArticle());
+                history.push('./')
+            } else throw new Error('Something go wrong with Article Edit')
+
+        } catch (error) {
+            return dispatch(failtureEditArticle(error));
+        }
+    };
+}
+
+
+export const makeData = (data) => {
+    let tagList =
+        Object.entries(data)
+            .filter(([key, value]) => key.slice(0, 3).includes('tag') && value !== '')
+            .map(el => el[1])
+
+    let {
+        title,
+        description,
+        body
+    } = data;
+
+    return {
+        article: {
+            title,
+            description,
+            body,
+            tagList
+        }
+    }
 }

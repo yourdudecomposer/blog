@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import NewArticleForm from '../../components/NewArticleForm/NewArticleForm';
 import classes from './NewArticle.module.scss'
 import { Alert, Spin } from 'antd';
+import { withRouter } from 'react-router-dom';
+import { createArticle, makeData } from '../../redux/actions/actions';
 
-
-function NewArticle({ loading, error }) {
+function NewArticle({ dispatch, history, loading, error }) {
 
 
     if (loading) {
@@ -35,8 +36,14 @@ function NewArticle({ loading, error }) {
         )
     }
 
+    const onSubmit = data => {
+        console.log(545454454)
+        console.log(data)
+        dispatch(createArticle(makeData(data), history));
+    };
+
     return (<div className={classes["form-container"]}>
-        <NewArticleForm label = 'Create new article' />
+        <NewArticleForm onSubmit={onSubmit} label='Create new article' />
     </div>);
 }
 
@@ -47,4 +54,4 @@ function mstp(s) {
         crated: s.create.crated
     }
 }
-export default connect(mstp)(NewArticle);
+export default withRouter(connect(mstp)(NewArticle));

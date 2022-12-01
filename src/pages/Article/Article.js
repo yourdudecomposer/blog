@@ -13,7 +13,6 @@ function Article({ dispatch, article, loading, error }) {
 
     const { slug } = useParams();
 
-
     useEffect(() => {
         dispatch(fetchArticle(slug))
     }, [])

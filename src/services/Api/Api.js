@@ -28,6 +28,32 @@ class Api {
         if (response.ok) return response.json();
         else throw new Error('Can\'t create article')
     }
+    editArticle = async (data,slug) => {
+        const response = await fetch(`${this.url}articles/${slug}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token ' + JSON.parse(localStorage.getItem('user')).token
+            },
+            body: JSON.stringify(data)
+        });
+        console.log(response)
+        if (response.ok) return response.json();
+        else throw new Error('Can\'t edit article')
+    }
+
+    deleteArticle = async (slug) => {
+        const response = await fetch(`${this.url}articles/${slug}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token ' + JSON.parse(localStorage.getItem('user')).token
+            },
+        });
+        console.log(response)
+        if (response.ok) return 
+        else throw new Error('Can\'t delete article')
+    }
     
     registerUser = async (data) => {
         const response = await fetch(`${this.url}users`, {
