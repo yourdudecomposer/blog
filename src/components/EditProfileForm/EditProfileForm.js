@@ -1,14 +1,15 @@
 import React from 'react';
-
 import { useForm } from "react-hook-form";
-import FormHeader from '../ui/FormHeader/FormHeader';
-import SubmitButton from '../ui/SubmitButton/SubmitButton';
-import classes from './EditProfileForm.module.scss';
-import { errorStyle } from '../../assets/errorStyle';
-import api from '../../services/Api/Api';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+import FormHeader from '../ui/FormHeader/FormHeader';
+import SubmitButton from '../ui/SubmitButton/SubmitButton';
+import { errorStyle } from '../../assets/errorStyle';
+import api from '../../services/Api/Api';
 import { editFailed, editSuccess } from '../../redux/actions/actions';
+
+import classes from './EditProfileForm.module.scss';
 
 function EditProfileForm({ history, dispatch }) {
 
@@ -27,7 +28,7 @@ function EditProfileForm({ history, dispatch }) {
     };
 
     return (
-        <form className={classes['form']} onSubmit={handleSubmit(onSubmit)}>
+        <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
             <FormHeader title='Edit Profile' />
             <label htmlFor="username">Username</label>
             <input id="username"

@@ -9,21 +9,21 @@ const initalState = {
 export default function editArticleReducer(state = initalState, action) {
     switch (action.type) {
         case EDIT_ARTICLE_BEGIN:
-            console.log('EDIT_ARTICLE_BEGIN')
+           
             return {
                 ...state,
                 loading: true,
                 error: null,
             };
         case EDIT_ARTICLE_SUCCESS:
-            console.log('EDIT_ARTICLE_SUCCESS')
+           
             return {
                 ...state,
                 loading: false,
                 error: null,
             };
         case EDIT_ARTICLE_FAILURE:
-            console.log('EDIT_ARTICLE_FAILURE')
+           
             return {
                 ...state,
                 loading: false,

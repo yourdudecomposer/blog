@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import NewArticleForm from '../../components/NewArticleForm/NewArticleForm';
-import classes from './NewArticle.module.scss'
 import { Alert, Spin } from 'antd';
 import { withRouter } from 'react-router-dom';
+
+import NewArticleForm from '../../components/NewArticleForm/NewArticleForm';
 import { createArticle, makeData } from '../../redux/actions/actions';
+
+import classes from './NewArticle.module.scss'
 
 function NewArticle({ dispatch, history, loading, error }) {
 

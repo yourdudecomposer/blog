@@ -1,12 +1,13 @@
 import React from 'react';
 import { Alert } from 'antd';
-
 import { connect } from 'react-redux';
+
 import EditProfileForm from '../../components/EditProfileForm/EditProfileForm';
+
 import classes from './Profile.module.scss'
 
 function Profile({ isEditFailed }) {
-    console.log(isEditFailed)
+   
     return (<div className={classes["form-container"]}>
         {isEditFailed && <Alert
             style={{

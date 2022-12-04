@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
-import ArticlePreview from '../ArticlePreview/ArticlePreview';
-import module from './ArticleList.module.scss'
 import { connect } from 'react-redux';
+
+import ArticlePreview from '../ArticlePreview/ArticlePreview';
 import { fetchArticles } from '../../redux/actions/actions'
+
+import module from './ArticleList.module.scss'
 
 function ArticleList({ dispatch, articles,loading,error }) {
 
@@ -16,16 +18,14 @@ function ArticleList({ dispatch, articles,loading,error }) {
     }
 
     if (loading) {
-        return (<div className={module['loading']}>
+        return (<div className={module.loading}>
           loading</div>);
     }
 
     return (
         <section className={module['article-list']}>
             {articles
-                .map(el => {
-                    return <ArticlePreview key={el.slug} {...el} />
-                })
+                .map(el => <ArticlePreview key={el.slug} {...el} />)
             }
 
         </section>

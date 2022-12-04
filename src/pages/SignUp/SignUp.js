@@ -1,7 +1,9 @@
 import { Alert } from "antd";
 import React from "react";
 import { connect } from "react-redux";
+
 import SignUpForm from "../../components/SignUpForm/SignUpForm";
+
 import classes from './SignUp.module.scss';
 
 function SignUp({ isSignUpFailed }) {

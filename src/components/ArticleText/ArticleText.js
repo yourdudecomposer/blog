@@ -1,11 +1,13 @@
-import React from 'react';
-import classes from './ArticleText.module.scss';
+import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import Modal from '../ui/Modal/Modal';
-import { useState } from 'react';
-import api from '../../services/Api/Api';
 import { Link, withRouter } from 'react-router-dom';
 import { Alert } from 'antd';
+
+import Modal from '../ui/Modal/Modal';
+import api from '../../services/Api/Api';
+
+
+import classes from './ArticleText.module.scss';
 
 
 
@@ -34,10 +36,10 @@ function ArticleText({ body, slug, author: { username }, history }) {
 
 
     return (<section className={classes['article-text']}>
-        {username !== JSON.parse(localStorage.getItem('user'))?.username ? null : <div className={classes["buttons"]} >
+        {username !== JSON.parse(localStorage.getItem('user'))?.username ? null : <div className={classes.buttons} >
             <button
                 onClick={showModal}
-                className={classes['delete']}>Delete</button>
+                className={classes.delete}>Delete</button>
             <Modal
                 closeModal={closeModal}
                 sendDeleteRequest={sendDeleteRequest}
@@ -46,7 +48,7 @@ function ArticleText({ body, slug, author: { username }, history }) {
                 }} />
             <Link to={`/articles/${slug}/edit`}>
                 <button
-                    className={classes['edit']}>Edit</button>
+                    className={classes.edit}>Edit</button>
             </Link>
         </div>}
         {isError ? <Alert

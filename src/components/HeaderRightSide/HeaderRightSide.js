@@ -1,11 +1,11 @@
-import React from 'react';
-import classes from './HeaderRightSide.module.scss';
+import React, { useEffect , useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+
 import { logOut } from '../../redux/actions/actions';
-import { useEffect } from 'react';
-import { useState } from 'react';
 import img from '../../assets/img/avatar.svg';
+
+import classes from './HeaderRightSide.module.scss';
 
 function HeaderRightSide({ dispatch, isLoggedIn }) {
 
@@ -48,7 +48,7 @@ function HeaderRightSide({ dispatch, isLoggedIn }) {
                 <button className={classes['create-article']}>Create article</button>
             </Link>
             <Link to='/profile'>
-                <div className={classes["user"]}>
+                <div className={classes.user}>
                     <span className={classes["user-name"]}>
                         {JSON.parse(localStorage.getItem('user')).username}
                     </span>

@@ -1,5 +1,7 @@
 import React from 'react';
+
 import classes from './ArticleIntro.module.scss'
+
 function ArticleIntro({description}) {
     return ( 
         <section className={classes['article-intro']}>

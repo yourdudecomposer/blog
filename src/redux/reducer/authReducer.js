@@ -9,48 +9,48 @@ const initalState = {
 
 
 export default function authReducer(state = initalState, action) {
-    console.log(action)
+   
     switch (action.type) {
         case LOG_IN:
-            console.log('LOG_IN ')
+           
             return {
                 ...state,
                 isLoggedIn: true,
                 isLogInFailed: false,
             };
         case LOG_OUT:
-            console.log('LOG_OUT')
+           
             return {
                 ...state,
                 isLoggedIn: false,
 
             };
         case LOG_IN_FAILED:
-            console.log('LOG_IN_FAILED')
+           
             return {
                 ...state,
                 isLogInFailed: true,
             };
         case SIGN_UP_FAILED:
-            console.log('SIGN_UP_FAILED')
+           
             return {
                 ...state,
                 isSignUpFailed: action.payload.message,
             };
         case SIGN_UP_SUCCESS:
-            console.log('SIGN_UP_SUCCESS')
+           
             return {
                 ...state,
                 isSignUpFailed: null,
             };
         case EDIT_FAILED:
-            console.log('EDIT_FAILED')
+           
             return {
                 ...state,
                 isEditFailed: action.payload.message,
             };
         case EDIT_SUCCESS:
-            console.log('EDIT_SUCCESS')
+           
             return {
                 ...state,
                 isEditFailed:null,

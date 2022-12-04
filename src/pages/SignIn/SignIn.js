@@ -1,7 +1,9 @@
 import { Alert } from 'antd';
 import React from 'react';
 import { connect } from 'react-redux';
+
 import SignInForm from '../../components/SignInForm/SignInForm';
+
 import classes from './SignIn.module.scss'
 
 function SignIn({ isLogInFailed }) {

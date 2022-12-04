@@ -1,7 +1,7 @@
-import React from 'react';
-import classes from './TagField.module.scss';
+import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { useState } from 'react';
+
+import classes from './TagField.module.scss';
 
 function TagField({
     tagList: tagListFromServer,
@@ -30,15 +30,13 @@ function TagField({
         <section className={classes['tag-field']}>
             <h3>Tags</h3>
 
-            {tagList.map(([el, id]) => {
-                return <TagItem
+            {tagList.map(([el, id]) => <TagItem
                     value={el}
                     key={id}
                     // id={id}
                     register={register}
                     deleteTag={deleteTag}
-                />
-            })}
+                />)}
 
             <button onClick={addTag} type='button' className={classes['add-tag-btn']}>Add tag</button>
         </section>
@@ -50,7 +48,7 @@ function TagItem({ register, deleteTag, id, value }) {
     return (
         <span  >
             <input
-                defaultValue={value ? value : ''}
+                defaultValue={value || ''}
                 {...register(`tag${id}`)} />
             <button
                 type='button'

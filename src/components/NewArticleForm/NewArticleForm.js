@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
 import TagField from '../TagField/TagField';
 import FormHeader from '../ui/FormHeader/FormHeader';
 import SubmitButton from '../ui/SubmitButton/SubmitButton';
-import classes from './NewArticleForm.module.scss'
 import { createArticle, makeData } from '../../redux/actions/actions';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { useEffect } from 'react';
+
+import classes from './NewArticleForm.module.scss'
 
 
 function NewArticleForm({
@@ -19,7 +20,7 @@ function NewArticleForm({
     title,
     description,
     body }) {
-    console.log(tagList,
+   
         title,
         description,)
     const { register, unregister, handleSubmit, watch, formState: { errors } } = useForm();
@@ -28,7 +29,7 @@ function NewArticleForm({
 
 
     return (
-        <form className={classes['form']} onSubmit={handleSubmit(onSubmit)}>
+        <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
             <FormHeader title={label} />
             <label htmlFor="title">Title</label>
 
@@ -50,7 +51,7 @@ function NewArticleForm({
                 defaultValue={body}
                 id='body'
                 placeholder="Text"
-                {...register("body", { required: true })}></textarea>
+                {...register("body", { required: true })} />
             {errors.body && <span className={classes['error-message']}>Text is required</span>}
 
             <TagField

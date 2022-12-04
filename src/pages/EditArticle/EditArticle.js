@@ -1,13 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import NewArticleForm from '../../components/NewArticleForm/NewArticleForm';
-import classes from './EditArticle.module.scss'
 import { Alert, Spin } from 'antd';
 import { withRouter } from 'react-router-dom';
+
+import NewArticleForm from '../../components/NewArticleForm/NewArticleForm';
 import { editArticle, makeData } from '../../redux/actions/actions';
 
+import classes from './EditArticle.module.scss'
+
 function EditArticle({ history, dispatch, loading,article, article: { slug, tagList, title, description, body } }) {
-    console.log(article)
+   
     if (loading) {
         return (
             <Spin
@@ -20,7 +22,7 @@ function EditArticle({ history, dispatch, loading,article, article: { slug, tagL
         )
     }
     const onSubmit = data => {
-        console.log(data)
+       
         dispatch(editArticle(makeData(data), history, slug));
     };
 

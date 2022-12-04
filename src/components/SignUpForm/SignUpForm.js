@@ -1,22 +1,24 @@
 import React from 'react';
-
 import { useForm, Controller } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
+
 import Checkbox from "../ui/Checkbox/Checkbox";
 import FormHeader from '../ui/FormHeader/FormHeader';
 import SubmitButton from '../ui/SubmitButton/SubmitButton';
-import classes from './SignUpForm.module.scss';
 import { errorStyle } from '../../assets/errorStyle';
 import api from '../../services/Api/Api';
 import { logIn, signUpFailed, signUpSuccess } from '../../redux/actions/actions';
-import { connect } from 'react-redux';
+
+import classes from './SignUpForm.module.scss';
+
 function App({ dispatch }) {
 
 
 
     const { register, handleSubmit, formState: { errors }, control, watch } = useForm();
 
-    let currentPassword = watch("password", "");
+    const currentPassword = watch("password", "");
 
 
     const onSubmit = data => {
@@ -41,7 +43,7 @@ function App({ dispatch }) {
 
 
     return (
-        <form className={classes['form']} onSubmit={handleSubmit(onSubmit)}>
+        <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
             <FormHeader title='Create new account' />
             <label htmlFor="username">Username</label>
             <input id="username"
@@ -111,13 +113,11 @@ function App({ dispatch }) {
                 name="checkbox"
                 control={control}
                 rules={{ required: 'You need check it' }}
-                render={({ field: { onChange } }) => {
-                    return <Checkbox
+                render={({ field: { onChange } }) => <Checkbox
                         onChange={onChange}
-                        className={classes['checkbox']}
-                        label={'I agree to the processing of my personal information'}
-                    />
-                }}
+                        className={classes.checkbox}
+                        label="I agree to the processing of my personal information"
+                    />}
             />
             <p className={classes['error-message']}>{errors.checkbox?.message}</p>
             <SubmitButton label='Create' />

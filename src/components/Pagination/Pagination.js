@@ -1,13 +1,16 @@
 import { Pagination as P } from 'antd';
 import React, { useState } from 'react';
+
 import './Pagination.css';
-import classes from './pag.module.scss';
 import { connect } from 'react-redux';
+
 import { fetchArticles } from '../../redux/actions/actions'
 import api from '../../services/Api/Api';
 
+import classes from './pag.module.scss';
 
-const Pagination = ({ dispatch, articlesCount }) => {
+
+function Pagination({ dispatch, articlesCount }) {
   const [page, setPage] = useState(1)
 
 
@@ -20,7 +23,7 @@ const Pagination = ({ dispatch, articlesCount }) => {
 
 
   if (articlesCount) return <P
-    className={classes['pagination']}
+    className={classes.pagination}
     onChange={onChange}
     current={page}
     showSizeChanger={false}

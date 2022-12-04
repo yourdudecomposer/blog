@@ -10,21 +10,21 @@ const initalState = {
 export default function articleReducer(state = initalState, action) {
     switch (action.type) {
         case FETCH_ARTICLE_BEGIN:
-            console.log('FETCH_ARTICLE_BEGIN')
+           
             return {
                 ...state,
                 loading: true,
                 error: null,
             };
         case FETCH_ARTICLE_SUCCESS:
-            console.log('FETCH_ARTICLE_SUCCESS')
+           
             return {
                 ...state,
                 loading: false,
                 article: action.payload,
             };
         case FETCH_ARTICLE_FAILURE:
-            console.log('FETCH_ARTICLE_FAILURE')
+           
             return {
                 ...state,
                 loading: false,

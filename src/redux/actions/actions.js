@@ -30,7 +30,7 @@ export const fetchArticlesBegin = () => ({
 
 export const fetchArticlesSuccess = payload => ({
     type: FETCH_ARTICLES_SUCCESS,
-    payload: payload
+    payload
 });
 
 export const fetchArticlesFailure = error => ({
@@ -46,7 +46,7 @@ export const fetchArticleBegin = () => ({
 
 export const fetchArticleSuccess = payload => ({
     type: FETCH_ARTICLE_SUCCESS,
-    payload: payload
+    payload
 });
 
 export const fetchArticleFailure = error => ({
@@ -175,12 +175,12 @@ export function editArticle(data, history, slug) {
 
 
 export const makeData = (data) => {
-    let tagList =
+    const tagList =
         Object.entries(data)
             .filter(([key, value]) => key.slice(0, 3).includes('tag') && value !== '')
             .map(el => el[1])
 
-    let {
+    const {
         title,
         description,
         body

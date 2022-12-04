@@ -9,21 +9,21 @@ const initalState = {
 export default function createArticleReducer(state = initalState, action) {
     switch (action.type) {
         case CREATE_ARTICLE_BEGIN:
-            console.log('CREATE_ARTICLE_BEGIN')
+           
             return {
                 ...state,
                 loading: true,
                 error: null,
             };
         case CREATE_ARTICLE_SUCCESS:
-            console.log('CREATE_ARTICLE_SUCCESS')
+           
             return {
                 ...state,
                 loading: false,
                 error: null,
             };
         case CREATE_ARTICLE_FAILURE:
-            console.log('CREATE_ARTICLE_FAILURE')
+           
             return {
                 ...state,
                 loading: false,

@@ -1,6 +1,7 @@
 import React from 'react';
-import classes from './Tag.module.scss';
 import { v4 as uuidv4 } from 'uuid';
+
+import classes from './Tag.module.scss';
 
 function Tag({ tagList}) {
 
