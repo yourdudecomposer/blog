@@ -14,7 +14,7 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react/recommended"
     ],
     "rules": {
         "import/order": [
