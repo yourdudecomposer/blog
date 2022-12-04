@@ -1,6 +1,5 @@
-import color from '../colors.scss';
+import color from "../colors.scss";
 
-
-export const errorStyle = {
-    border: `solid ${color.highlight}`
-}
+export default {
+  border: `solid ${color.highlight}`,
+};

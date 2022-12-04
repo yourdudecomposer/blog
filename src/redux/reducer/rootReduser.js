@@ -7,9 +7,9 @@ import create from "./createArticleReducer";
 import edit from "./editArticleReducer";
 
 export default combineReducers({
-    articles,
-    article,
-    auth,
-    create,
-    edit
+  articles,
+  article,
+  auth,
+  create,
+  edit,
 });

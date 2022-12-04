@@ -1,10 +1,10 @@
-@use '../../../colors.scss' as color;
+@use "../../../colors.scss" as color;
 
 .button {
-        background-color: color.$info;
-        color: white;
-        border-radius: 4px;
-        height: 40px;
-        width: 100%;
-        max-width: 319px;
+  background-color: color.$info;
+  color: white;
+  border-radius: 4px;
+  height: 40px;
+  width: 100%;
+  max-width: 319px;
 }

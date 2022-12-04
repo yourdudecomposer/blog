@@ -1,16 +1,15 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React from "react";
 
-import ArticleList from '../../components/ArticleList/ArticleList';
-import Pagination from '../../components/Pagination/Pagination';
-
-
+import ArticleList from "../../components/ArticleList/ArticleList";
+import Pagination from "../../components/Pagination/Pagination";
 
 function MainPage() {
-
-    return (<>
-        <ArticleList />
-        <Pagination />
-    </>);
+  return (
+    <>
+      <ArticleList />
+      <Pagination />
+    </>
+  );
 }
 
 export default MainPage;

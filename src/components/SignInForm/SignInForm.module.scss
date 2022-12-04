@@ -1,52 +1,51 @@
-@use '../../colors.scss' as color;
+@use "../../colors.scss" as color;
 
 .form {
-    font-family: Roboto;
-    box-shadow: 0px 22px 106px 0px #00000012;
-    width: 384px;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    padding: 48px 32px 48px 32px;
+  font-family: Roboto;
+  box-shadow: 0px 22px 106px 0px #00000012;
+  width: 384px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 48px 32px 48px 32px;
 
-    label {
-        font-size: 14px;
-        line-height: 22px;
-        margin-bottom: 2px;
+  label {
+    font-size: 14px;
+    line-height: 22px;
+    margin-bottom: 2px;
 
-        &:first-of-type {
-            margin-top: 21px;
-        }
+    &:first-of-type {
+      margin-top: 21px;
     }
+  }
 
-    input {
-        height: 40px;
-        border: 1px solid #D9D9D9;
-        border-radius: 4px;
-        margin-bottom: 2px;
-        padding-left: 12px;
-        font-size: 16px;
-        line-height: 24px;
+  input {
+    height: 40px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    margin-bottom: 2px;
+    padding-left: 12px;
+    font-size: 16px;
+    line-height: 24px;
 
-        &::placeholder {
-            color: #BFBFBF;
-        }
+    &::placeholder {
+      color: #bfbfbf;
     }
+  }
 
-    .sign-in-text {
-        width: 100%;
-        text-align: center;
-        color: color.$light-grey;
-        margin-top: 8px;
+  .sign-in-text {
+    width: 100%;
+    text-align: center;
+    color: color.$light-grey;
+    margin-top: 8px;
+  }
+
+  .error-message {
+    color: color.$highlight-color;
+    margin-bottom: 12px;
+
+    &:nth-child(7) {
+      margin-bottom: 21px;
     }
-
-    .error-message {
-        color: color.$highlight-color;
-        margin-bottom: 12px;
-
-        &:nth-child(7) {
-            margin-bottom: 21px;
-        }
-
-    }
+  }
 }

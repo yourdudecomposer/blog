@@ -1,10 +1,10 @@
 @use "../../colors" as color;
 
-.main{
-background-color: color.$body;
-min-height: 100vh;
+.main {
+  background-color: color.$body;
+  min-height: 100vh;
 }
 
-button{
-    cursor: pointer;
+button {
+  cursor: pointer;
 }

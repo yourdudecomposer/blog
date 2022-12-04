@@ -1,83 +1,79 @@
-@use '../../colors.scss' as color;
+@use "../../colors.scss" as color;
 
 .article-text {
-    color: color.$text;
-    margin-top: 25px;
-    position: relative;
-    ol{
-        margin-left: 20px;
-    }
+  color: color.$text;
+  margin-top: 25px;
+  position: relative;
+  ol {
+    margin-left: 20px;
+  }
 
+  p {
+    font-size: 14px;
+    line-height: 22px;
+    overflow-wrap: break-word;
+  }
 
-    p {
-        font-size: 14px;
-        line-height: 22px;
-        overflow-wrap: break-word;
-    }
+  h1 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  h2 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  h3 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  h4 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  h5 {
+    font-size: 20px;
+    line-height: 28px;
+  }
 
-    h1 {
-        font-size: 20px;
-        line-height: 28px;
-    }
-    h2 {
-        font-size: 20px;
-        line-height: 28px;
-    }
-    h3 {
-        font-size: 20px;
-        line-height: 28px;
-    }
-    h4 {
-        font-size: 20px;
-        line-height: 28px;
-    }
-    h5 {
-        font-size: 20px;
-        line-height: 28px;
-    }
-
-    h6 {
-        font-size: 18px;
-        line-height: 28px;
-    }
-
+  h6 {
+    font-size: 18px;
+    line-height: 28px;
+  }
 }
 
-.buttons{
-    position: absolute;
-    width: 169px;
+.buttons {
+  position: absolute;
+  width: 169px;
+  height: 31px;
+  right: 0;
+  top: -60px;
+
+  button {
+    border-radius: 6px;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
     height: 31px;
-    right: 0;
-    top: -60px;
+    background-color: #fff;
+  }
 
-    button {
-      
-        border-radius: 6px;
-        font-family: Roboto;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 24px;
-        height: 31px;
-        background-color: #fff;
-    }
-
-    .delete {
-        width: 78px;
-        border: 1px solid color.$highlight-color;
-        color: color.$highlight-color;
-        margin-right: 12px;
-    }
-    .edit{
-        width: 65px;
-        border: 1px solid color.$success;
-        color: color.$success;
-    }
-
+  .delete {
+    width: 78px;
+    border: 1px solid color.$highlight-color;
+    color: color.$highlight-color;
+    margin-right: 12px;
+  }
+  .edit {
+    width: 65px;
+    border: 1px solid color.$success;
+    color: color.$success;
+  }
 }
 
-@media (max-width: 555px){
-    .buttons{
-        position: initial;
-        margin-bottom: 20px;
-    }
+@media (max-width: 555px) {
+  .buttons {
+    position: initial;
+    margin-bottom: 20px;
+  }
 }

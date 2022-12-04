@@ -1,19 +1,18 @@
-@import '../../colors.scss';
+@import "../../colors.scss";
 
-
-.ant-pagination-item a{
-    color: rgba(0, 0, 0, 0.75) ;
+.ant-pagination-item a {
+  color: rgba(0, 0, 0, 0.75);
 }
 .ant-pagination-item-active {
-    background: #1890FF;
+  background: #1890ff;
 }
-.ant-pagination-item-active a{
-color: white;
+.ant-pagination-item-active a {
+  color: white;
 }
 
-.ant-pagination-item:hover a{
-    color: rgba(0, 0, 0, 0.75);
+.ant-pagination-item:hover a {
+  color: rgba(0, 0, 0, 0.75);
 }
-.ant-pagination-item-active:hover a{
-color: white;
+.ant-pagination-item-active:hover a {
+  color: white;
 }

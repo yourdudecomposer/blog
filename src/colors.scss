@@ -1,12 +1,11 @@
-$success: #52C41A;
-$info:#1890FF;
-$body:#EBEEF3;
-$text:rgba(0, 0, 0, 0.75);
-$light-grey:rgba(0, 0, 0, 0.5);
-$body2:#e5e5e5;
-$highlight-color:#F5222D;
-
+$success: #52c41a;
+$info: #1890ff;
+$body: #ebeef3;
+$text: rgba(0, 0, 0, 0.75);
+$light-grey: rgba(0, 0, 0, 0.5);
+$body2: #e5e5e5;
+$highlight-color: #f5222d;
 
 :export {
-    highlight:$highlight-color;
-  }
+  highlight: $highlight-color;
+}
