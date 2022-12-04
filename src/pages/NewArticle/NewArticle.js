@@ -37,8 +37,6 @@ function NewArticle({ dispatch, history, loading, error }) {
     }
 
     const onSubmit = data => {
-        console.log(545454454)
-        console.log(data)
         dispatch(createArticle(makeData(data), history));
     };
 

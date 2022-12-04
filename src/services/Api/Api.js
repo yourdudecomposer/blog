@@ -91,8 +91,10 @@ class Api {
             },
             body: JSON.stringify(data)
         });
+
         if (response.ok) return response.json();
-        else throw new Error('Can\'t update')
+        let res = await response.json()
+        throw new Error(JSON.stringify(res.errors))
     }
 
     geteUser = async () => {

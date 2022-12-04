@@ -146,7 +146,7 @@ export function createArticle(data, history) {
             const res = await api.createArticle(data)
             if (res.article) {
                 await dispatch(successCreateArticle());
-                history.push('./')
+                history.push('/')
             } else throw new Error('Something go wrong')
 
 
@@ -164,7 +164,7 @@ export function editArticle(data, history, slug) {
             const res = await api.editArticle(data, slug)
             if (res.article) {
                 await dispatch(successEditArticle());
-                history.push('./')
+                history.push('/')
             } else throw new Error('Something go wrong with Article Edit')
 
         } catch (error) {

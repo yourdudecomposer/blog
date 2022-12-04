@@ -57,7 +57,7 @@ function EditProfileForm({ history, dispatch }) {
                 id="password"
                 style={errors.password && errorStyle}
                 {...register("password", {
-                    required: "Password is required",
+                    // required: "Password is required",
                     minLength: {
                         value: 6,
                         message: 'Your password needs to be at least 6 characters.'
@@ -74,7 +74,6 @@ function EditProfileForm({ history, dispatch }) {
                 id="avatar_image"
                 {...register("image",
                     {
-
                         pattern: {
                             value: /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/,
                             message: "Url is not correct"
@@ -82,7 +81,6 @@ function EditProfileForm({ history, dispatch }) {
 
                     })} placeholder='Avatar image' />
             <p className={classes['error-message']}>{errors.image?.message}</p>
-
             <SubmitButton label='Save' />
         </form>
     );

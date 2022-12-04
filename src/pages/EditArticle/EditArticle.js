@@ -6,8 +6,8 @@ import { Alert, Spin } from 'antd';
 import { withRouter } from 'react-router-dom';
 import { editArticle, makeData } from '../../redux/actions/actions';
 
-function EditArticle({ history, dispatch,loading, article: {slug, tagList, title, description, body } }) {
-
+function EditArticle({ history, dispatch, loading,article, article: { slug, tagList, title, description, body } }) {
+    console.log(article)
     if (loading) {
         return (
             <Spin
@@ -25,7 +25,13 @@ function EditArticle({ history, dispatch,loading, article: {slug, tagList, title
     };
 
     return (<div className={classes["form-container"]}>
-        <NewArticleForm onSubmit={onSubmit} label='Edit article' />
+        <NewArticleForm
+            tagList={tagList}
+            title={title}
+            description={description}
+            body={body}
+            onSubmit={onSubmit}
+            label='Edit article' />
     </div>);
 }
 

@@ -10,12 +10,19 @@ import { withRouter } from 'react-router-dom';
 import { useEffect } from 'react';
 
 
-function NewArticleForm({ onSubmit:onS, dispatch, history, label }) {
-
+function NewArticleForm({
+    onSubmit: onS,
+    dispatch,
+    history,
+    label,
+    tagList,
+    title,
+    description,
+    body }) {
+    console.log(tagList,
+        title,
+        description,)
     const { register, unregister, handleSubmit, watch, formState: { errors } } = useForm();
-
-
-
 
     const onSubmit = data => onS(data)
 
@@ -25,16 +32,31 @@ function NewArticleForm({ onSubmit:onS, dispatch, history, label }) {
             <FormHeader title={label} />
             <label htmlFor="title">Title</label>
 
-            <input id='title' placeholder="Title"  {...register("title", { required: true })} />
+            <input
+                defaultValue={title}
+                id='title'
+                placeholder="Title"
+                {...register("title", { required: true })} />
             {errors.title && <span className={classes['error-message']}>Title is required</span>}
             <label htmlFor="description">Short description</label>
-            <input id='description' placeholder="Title"  {...register("description", { required: true })} />
+            <input
+                defaultValue={description}
+                id='description'
+                placeholder="Title"
+                {...register("description", { required: true })} />
             {errors.description && <span className={classes['error-message']}>Title is required</span>}
             <label htmlFor="body">Text</label>
-            <textarea id='body' placeholder="Text"  {...register("body", { required: true })}></textarea>
+            <textarea
+                defaultValue={body}
+                id='body'
+                placeholder="Text"
+                {...register("body", { required: true })}></textarea>
             {errors.body && <span className={classes['error-message']}>Text is required</span>}
 
-            <TagField unregister={unregister} register={register} />
+            <TagField
+                tagList={tagList}
+                unregister={unregister}
+                register={register} />
             <SubmitButton label='Send' />
         </form>
     );

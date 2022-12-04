@@ -35,6 +35,7 @@ function App({ dispatch, isLoggedIn, isEditFailed }) {
       <div className={module["wrapper"]}>
         <Header />
         <main className={module["main"]}>
+  
           <Switch>
             <Route exact path={'/'}>
               <MainPage />
@@ -42,6 +43,7 @@ function App({ dispatch, isLoggedIn, isEditFailed }) {
             <Route path={'/sign-in'}>
               {isLoggedIn ? <Redirect to="/articles" /> : <SignIn />}
             </Route>
+    
             <Route path={'/sign-up'}>
               {isLoggedIn ? <Redirect to="/articles" /> : <SignUp />}
 
