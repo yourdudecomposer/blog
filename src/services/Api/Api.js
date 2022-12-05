@@ -3,7 +3,20 @@ class Api {
 
   limit = 20;
 
+  user = localStorage.getItem("user");
+
   getArticles = async (ofset = 0) => {
+    if (this.user) {
+      const response = await fetch(
+        `${this.url}articles/?limit=${this.limit}&offset=${ofset}`,
+        {
+          headers: {
+            Authorization: `Token ${JSON.parse(this.user).token}`,
+          },
+        }
+      );
+      return response.json();
+    }
     const response = await fetch(
       `${this.url}articles/?limit=${this.limit}&offset=${ofset}`
     );
@@ -11,6 +24,14 @@ class Api {
   };
 
   getArticle = async (slug) => {
+    if (this.user) {
+      const response = await fetch(`${this.url}articles/${slug}`, {
+        headers: {
+          Authorization: `Token ${JSON.parse(this.user).token}`,
+        },
+      });
+      return response.json();
+    }
     const response = await fetch(`${this.url}articles/${slug}`);
     return response.json();
   };
@@ -116,6 +137,34 @@ class Api {
     });
     if (response.ok) return response.json();
     throw new Error("Can't get user");
+  };
+
+  addFavorites = async (slug) => {
+    const response = await fetch(`${this.url}articles/${slug}/favorite`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${
+          JSON.parse(localStorage.getItem("user")).token
+        }`,
+      },
+    });
+    if (response.ok) return;
+    throw new Error("Can't like");
+  };
+
+  deleteFavorites = async (slug) => {
+    const response = await fetch(`${this.url}articles/${slug}/favorite`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${
+          JSON.parse(localStorage.getItem("user")).token
+        }`,
+      },
+    });
+    if (response.ok) return;
+    throw new Error("Can't delete like");
   };
 }
 

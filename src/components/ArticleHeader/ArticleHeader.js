@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
-import like from "../../assets/img/heart.svg";
+import unLike from "../../assets/img/heart.svg";
+import like from "../../assets/img/heart-liked.svg";
 import Tag from "../ui/Tag/Tag";
 import avatar from "../../assets/img/avatar.svg";
+import api from "../../services/Api/Api";
 
 import classes from "./ArticleHeader.module.scss";
 
@@ -13,10 +15,32 @@ function ArticleHeader({
   title,
   createdAt,
   favoritesCount,
+  favorited,
   slug,
   tagList,
   author: { username, image },
 }) {
+  const [liked, setLiked] = useState(favorited);
+  const [count, setCount] = useState(favoritesCount);
+
+  function likeArticle() {
+    if (!api.user) return;
+    setLiked(!liked);
+    if (count === favoritesCount && !liked) setCount(count + 1);
+    else if (count === favoritesCount && liked) setCount(count - 1);
+    else if (count !== favoritesCount && liked) setCount(count - 1);
+    else if (count !== favoritesCount && !liked) setCount(count + 1);
+  }
+
+  useEffect(() => {
+    if (liked !== favorited) {
+      // eslint-disable-next-line no-unused-expressions
+      liked
+        ? api.addFavorites(slug).catch(() => {})
+        : api.deleteFavorites(slug).catch(() => {});
+    }
+  }, [liked]);
+
   return (
     <header className={classes["article-header"]}>
       <div className={classes["article-header__left-side"]}>
@@ -24,14 +48,14 @@ function ArticleHeader({
           <h2 className={classes["article-header__title"]}>{title}</h2>
         </Link>
         <span className={classes.likes}>
+          {/* eslint-disable-next-line */}
           <img
-            src={like}
+            onClick={() => likeArticle(slug)}
+            src={liked ? like : unLike}
             alt="like"
             className={classes["article-header__like-img"]}
           />
-          <span className={classes["article-header__like-count"]}>
-            {favoritesCount}
-          </span>
+          <span className={classes["article-header__like-count"]}>{count}</span>
         </span>
         <section className={classes["article-header__tag-list"]}>
           <Tag tagList={tagList} />
@@ -62,6 +86,7 @@ ArticleHeader.propTypes = {
   slug: PropTypes.string,
   tagList: PropTypes.array,
   title: PropTypes.string,
+  favorited: PropTypes.bool,
 };
 
 ArticleHeader.defaultProps = {
@@ -74,5 +99,6 @@ ArticleHeader.defaultProps = {
   slug: "",
   tagList: [],
   title: "",
+  favorited: false,
 };
 export default ArticleHeader;
