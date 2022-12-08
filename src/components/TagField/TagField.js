@@ -47,7 +47,7 @@ function TagField({ tagList: tagListFromServer, register, unregister }) {
 
 TagField.propTypes = {
   register: PropTypes.func,
-  tagList: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
+  tagList: PropTypes.arrayOf(PropTypes.any),
   unregister: PropTypes.func,
 };
 TagField.defaultProps = {
