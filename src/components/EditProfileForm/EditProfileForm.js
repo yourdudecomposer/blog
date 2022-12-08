@@ -36,6 +36,7 @@ function EditProfileForm({ history, dispatch }) {
       <label htmlFor="username">Username</label>
       <input
         id="username"
+        defaultValue={JSON.parse(localStorage.getItem("user"))?.username}
         style={errors.username && errorStyle}
         {...register("username", {
           required: "Username is required",
@@ -47,6 +48,7 @@ function EditProfileForm({ history, dispatch }) {
       <label htmlFor="mail">Email address</label>
       <input
         style={errors.mail && errorStyle}
+        defaultValue={JSON.parse(localStorage.getItem("user"))?.email}
         id="mail"
         {...register("mail", {
           required: "Email Address is required",

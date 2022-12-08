@@ -17,6 +17,7 @@ import Header from "../Header/Header";
 import { logIn } from "../../redux/actions/actions";
 import NewArticle from "../../pages/NewArticle/NewArticle";
 import EditArticle from "../../pages/EditArticle/EditArticle";
+import NoMatch from "../NoMatch/NoMatch";
 
 import classes from "./App.module.scss";
 
@@ -42,7 +43,7 @@ function App({ dispatch, isLoggedIn }) {
               {isLoggedIn ? <Redirect to="/articles" /> : <SignUp />}
             </Route>
             <Route path="/profile">
-              <Profile />
+              {!isLoggedIn ? <Redirect to="/sign-in" /> : <Profile />}
             </Route>
             <Route exact path="/articles">
               <MainPage />
@@ -55,6 +56,9 @@ function App({ dispatch, isLoggedIn }) {
             </Route>
             <Route path="/new-article">
               {!isLoggedIn ? <Redirect to="/sign-in" /> : <NewArticle />}
+            </Route>
+            <Route path="*">
+              <NoMatch />
             </Route>
           </Switch>
         </main>

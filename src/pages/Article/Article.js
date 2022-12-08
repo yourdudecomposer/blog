@@ -1,3 +1,4 @@
+import { Spin } from "antd";
 import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
@@ -24,7 +25,15 @@ function Article({ dispatch, article, loading, error }) {
   }
 
   if (loading) {
-    return <div className={classes.loading}>loading</div>;
+    return (
+      <Spin
+        size="large"
+        style={{
+          width: "100%",
+          margin: "20px auto",
+        }}
+      />
+    );
   }
 
   return (

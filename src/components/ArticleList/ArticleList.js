@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Spin } from "antd";
 
 import ArticlePreview from "../ArticlePreview/ArticlePreview";
 import { fetchArticles } from "../../redux/actions/actions";
@@ -21,7 +22,15 @@ function ArticleList({ dispatch, articles, loading, error }) {
   }
 
   if (loading) {
-    return <div className={classes.loading}>loading</div>;
+    return (
+      <Spin
+        size="large"
+        style={{
+          width: "100%",
+          margin: "20px auto",
+        }}
+      />
+    );
   }
 
   return (
