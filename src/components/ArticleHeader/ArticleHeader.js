@@ -22,7 +22,6 @@ function ArticleHeader({
 }) {
   const [liked, setLiked] = useState(favorited);
   const [count, setCount] = useState(favoritesCount);
-
   function likeArticle() {
     if (!api.user) return;
     setLiked(!liked);
@@ -94,7 +93,7 @@ ArticleHeader.defaultProps = {
     username: "John Doe",
     image: avatar,
   },
-  createdAt: "0",
+  createdAt: "2022-12-07T13:15:33.909Z",
   favoritesCount: 0,
   slug: "",
   tagList: [],
