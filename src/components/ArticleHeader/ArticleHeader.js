@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React, { useState, useEffect } from "react";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import unLike from "../../assets/img/heart.svg";
 import like from "../../assets/img/heart-liked.svg";
@@ -12,6 +13,7 @@ import api from "../../services/Api/Api";
 import classes from "./ArticleHeader.module.scss";
 
 function ArticleHeader({
+  isLoggedIn,
   title,
   createdAt,
   favoritesCount,
@@ -23,7 +25,7 @@ function ArticleHeader({
   const [liked, setLiked] = useState(favorited);
   const [count, setCount] = useState(favoritesCount);
   function likeArticle() {
-    if (!api.user) return;
+    if (!isLoggedIn) return;
     setLiked(!liked);
     if (count === favoritesCount && !liked) setCount(count + 1);
     else if (count === favoritesCount && liked) setCount(count - 1);
@@ -76,6 +78,7 @@ function ArticleHeader({
 }
 
 ArticleHeader.propTypes = {
+  isLoggedIn: PropTypes.bool,
   author: PropTypes.shape({
     username: PropTypes.string,
     image: PropTypes.string,
@@ -89,6 +92,7 @@ ArticleHeader.propTypes = {
 };
 
 ArticleHeader.defaultProps = {
+  isLoggedIn: false,
   author: {
     username: "John Doe",
     image: avatar,
@@ -100,4 +104,10 @@ ArticleHeader.defaultProps = {
   title: "",
   favorited: false,
 };
-export default ArticleHeader;
+
+function mstp(state) {
+  return {
+    isLoggedIn: state.auth.isLoggedIn,
+  };
+}
+export default connect(mstp)(ArticleHeader);

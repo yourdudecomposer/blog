@@ -56,6 +56,7 @@ function SignInForm({ dispatch }) {
 
       <input
         id="password"
+        type="password"
         style={errors.password && errorStyle}
         {...register("password", {
           required: "Password is required",

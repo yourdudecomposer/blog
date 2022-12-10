@@ -64,6 +64,7 @@ function EditProfileForm({ history, dispatch }) {
 
       <input
         id="password"
+        type="password"
         style={errors.password && errorStyle}
         {...register("password", {
           minLength: {

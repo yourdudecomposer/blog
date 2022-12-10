@@ -1,4 +1,4 @@
-@use "../../colors.scss" as color;
+@use "../../assets/colors.scss" as color;
 
 .article-intro {
   .article-intro__text {
@@ -6,7 +6,7 @@
     font-size: 12px;
     font-weight: 400;
     line-height: 22px;
-    max-width: 65%;
     margin-top: 15px;
+    word-wrap: break-word;
   }
 }
