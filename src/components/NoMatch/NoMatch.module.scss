@@ -1,4 +1,4 @@
-@use '../../assets/colors.scss' as color;
+@use "../../assets/colors.scss" as color;
 
 .no-match {
   max-width: 941px;
@@ -7,10 +7,10 @@
   padding-top: 20px;
   font-size: 15px;
   line-height: 28px;
-  a{
+  a {
     color: color.$info;
-    &:hover{
-color: #0084ff;
+    &:hover {
+      color: #0084ff;
     }
   }
 }

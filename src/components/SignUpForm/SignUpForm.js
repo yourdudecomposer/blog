@@ -13,6 +13,7 @@ import {
   logIn,
   signUpFailed,
   signUpSuccess,
+  editSuccess,
 } from "../../redux/actions/actions";
 
 import classes from "./SignUpForm.module.scss";
@@ -38,7 +39,11 @@ function App({ dispatch }) {
     };
     api
       .registerUser(dataForSend)
-      .then((res) => localStorage.setItem("user", JSON.stringify(res.user)))
+      .then((res) => {
+        localStorage.setItem("user", JSON.stringify(res.user));
+        return res;
+      })
+      .then((res) => dispatch(editSuccess(res)))
       .then(() => {
         dispatch(logIn());
       })
@@ -107,6 +112,7 @@ function App({ dispatch }) {
       <label htmlFor="password_repeat">Repeat Password</label>
       <input
         id="password_repeat"
+        type="password"
         style={errors.password_repeat && errorStyle}
         {...register("password_repeat", {
           required: "Repeat Password is required",
