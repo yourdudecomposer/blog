@@ -3,7 +3,7 @@ import { Alert } from "antd";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import EditProfileForm from "../../components/EditProfileForm/EditProfileForm";
+import EditProfileForm from "../../EditProfileForm/EditProfileForm";
 
 import classes from "./Profile.module.scss";
 
@@ -30,7 +30,7 @@ Profile.defaultProps = {
 };
 
 Profile.propTypes = {
-  isEditFailed: PropTypes.bool,
+  isEditFailed: PropTypes.any,
 };
 function mstp(s) {
   return {

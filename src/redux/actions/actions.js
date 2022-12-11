@@ -1,28 +1,25 @@
 import api from "../../services/Api/Api";
-
-export const FETCH_ARTICLES_BEGIN = "FETCH_ARTICLES_BEGIN";
-export const FETCH_ARTICLES_SUCCESS = "FETCH_ARTICLES_SUCCESS";
-export const FETCH_ARTICLES_FAILURE = "FETCH_ARTICLES_FAILURE";
-
-export const FETCH_ARTICLE_BEGIN = "FETCH_ARTICLE_BEGIN";
-export const FETCH_ARTICLE_SUCCESS = "FETCH_ARTICLE_SUCCESS";
-export const FETCH_ARTICLE_FAILURE = "FETCH_ARTICLE_FAILURE";
-
-export const LOG_IN = "LOG_IN ";
-export const LOG_OUT = "LOG_OUT";
-export const LOG_IN_FAILED = "LOG_IN_FAILED";
-export const SIGN_UP_FAILED = "SIGN_UP_FAILED";
-export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
-export const EDIT_FAILED = "EDIT_FAILED";
-export const EDIT_SUCCESS = "EDIT_SUCCESS";
-
-export const CREATE_ARTICLE_BEGIN = "CREATE_ARTICLE_BEGIN";
-export const CREATE_ARTICLE_SUCCESS = "CREATE_ARTICLE_SUCCESS";
-export const CREATE_ARTICLE_FAILURE = "CREATE_ARTICLE_FAILURE";
-
-export const EDIT_ARTICLE_BEGIN = "EDIT_ARTICLE_BEGIN";
-export const EDIT_ARTICLE_SUCCESS = "EDIT_ARTICLE_SUCCESS";
-export const EDIT_ARTICLE_FAILURE = "EDIT_ARTICLE_FAILURE";
+import {
+  FETCH_ARTICLES_BEGIN,
+  FETCH_ARTICLES_SUCCESS,
+  FETCH_ARTICLES_FAILURE,
+  FETCH_ARTICLE_BEGIN,
+  FETCH_ARTICLE_SUCCESS,
+  FETCH_ARTICLE_FAILURE,
+  LOG_IN,
+  LOG_OUT,
+  LOG_IN_FAILED,
+  SIGN_UP_FAILED,
+  SIGN_UP_SUCCESS,
+  EDIT_FAILED,
+  EDIT_SUCCESS,
+  CREATE_ARTICLE_BEGIN,
+  CREATE_ARTICLE_SUCCESS,
+  CREATE_ARTICLE_FAILURE,
+  EDIT_ARTICLE_BEGIN,
+  EDIT_ARTICLE_SUCCESS,
+  EDIT_ARTICLE_FAILURE,
+} from "../redux-tupes";
 
 export const fetchArticlesBegin = () => ({
   type: FETCH_ARTICLES_BEGIN,
@@ -72,8 +69,9 @@ export const editFailed = (err) => ({
   type: EDIT_FAILED,
   payload: err,
 });
-export const editSuccess = () => ({
+export const editSuccess = (user) => ({
   type: EDIT_SUCCESS,
+  payload: user,
 });
 
 export const startCreateArticle = () => ({

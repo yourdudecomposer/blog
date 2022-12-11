@@ -24,8 +24,9 @@ function EditProfileForm({ history, dispatch }) {
       .updateUser({ user: data })
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.user));
+        return res;
       })
-      .then(() => dispatch(editSuccess()))
+      .then((res) => dispatch(editSuccess(res)))
       .then(() => history.push("/articles"))
       .catch((err) => dispatch(editFailed(err)));
   };

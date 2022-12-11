@@ -4,10 +4,10 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import ArticleHeader from "../../components/ArticleHeader/ArticleHeader";
-import ArticleIntro from "../../components/ArticleIntro/ArticleIntro";
-import ArticleText from "../../components/ArticleText/ArticleText";
-import { fetchArticle } from "../../redux/actions/actions";
+import ArticleHeader from "../../ArticleHeader/ArticleHeader";
+import ArticleIntro from "../../ArticleIntro/ArticleIntro";
+import ArticleText from "../../ArticleText/ArticleText";
+import { fetchArticle } from "../../../redux/actions/actions";
 
 import classes from "./Article.module.scss";
 

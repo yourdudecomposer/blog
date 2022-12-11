@@ -2,7 +2,7 @@ import {
   EDIT_ARTICLE_BEGIN,
   EDIT_ARTICLE_SUCCESS,
   EDIT_ARTICLE_FAILURE,
-} from "../actions/actions";
+} from "../redux-tupes";
 
 const initalState = {
   loading: false,

@@ -1,7 +1,7 @@
 import React from "react";
 
-import ArticleList from "../../components/ArticleList/ArticleList";
-import Pagination from "../../components/Pagination/Pagination";
+import ArticleList from "../../ArticleList/ArticleList";
+import Pagination from "../../Pagination/Pagination";
 
 function MainPage() {
   return (

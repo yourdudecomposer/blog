@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 import classes from "./NoMatch.module.scss";
 
@@ -10,6 +10,9 @@ export default function NoMatch() {
       <h3>
         No match for <code>{location.pathname}</code>
       </h3>
+      <Link to="/">
+        <p>To main Page</p>
+      </Link>
     </div>
   );
 }

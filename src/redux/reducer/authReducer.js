@@ -6,13 +6,14 @@ import {
   EDIT_FAILED,
   SIGN_UP_SUCCESS,
   EDIT_SUCCESS,
-} from "../actions/actions";
+} from "../redux-tupes";
 
 const initalState = {
   isLoggedIn: false,
   isLogInFailed: false,
   isSignUpFailed: null,
   isEditFailed: null,
+  userName: JSON.parse(localStorage.getItem("user"))?.username,
 };
 // eslint-disable-next-line
 export default function authReducer(state = initalState, action) {
@@ -52,6 +53,7 @@ export default function authReducer(state = initalState, action) {
       return {
         ...state,
         isEditFailed: null,
+        userName: action.payload.user.username,
       };
 
     default:

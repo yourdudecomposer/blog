@@ -4,8 +4,8 @@ import { Alert, Spin } from "antd";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import NewArticleForm from "../../components/NewArticleForm/NewArticleForm";
-import { createArticle, makeData } from "../../redux/actions/actions";
+import NewArticleForm from "../../NewArticleForm/NewArticleForm";
+import { createArticle, makeData } from "../../../redux/actions/actions";
 
 import classes from "./NewArticle.module.scss";
 

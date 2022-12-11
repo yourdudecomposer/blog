@@ -8,7 +8,7 @@ import img from "../../assets/img/avatar.svg";
 
 import classes from "./HeaderRightSide.module.scss";
 
-function HeaderRightSide({ dispatch, isLoggedIn }) {
+function HeaderRightSide({ dispatch, isLoggedIn, userName }) {
   const [avatar, setAvatar] = useState();
 
   function exit() {
@@ -54,9 +54,7 @@ function HeaderRightSide({ dispatch, isLoggedIn }) {
       </Link>
       <Link to="/profile">
         <div className={classes.user}>
-          <span className={classes["user-name"]}>
-            {JSON.parse(localStorage.getItem("user")).username}
-          </span>
+          <span className={classes["user-name"]}>{userName}</span>
           <img src={avatar} alt="" className={classes["user-avatar"]} />
         </div>
       </Link>
@@ -71,15 +69,18 @@ function HeaderRightSide({ dispatch, isLoggedIn }) {
 
 HeaderRightSide.propTypes = {
   dispatch: PropTypes.func,
-  isLoggedIn: PropTypes.any,
+  isLoggedIn: PropTypes.bool,
+  userName: PropTypes.string,
 };
 HeaderRightSide.defaultProps = {
   dispatch: () => {},
   isLoggedIn: true,
+  userName: "",
 };
 function mstp(s) {
   return {
     isLoggedIn: s.auth.isLoggedIn,
+    userName: s.auth.userName,
   };
 }
 

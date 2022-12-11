@@ -3,7 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import SignUpForm from "../../components/SignUpForm/SignUpForm";
+import SignUpForm from "../../SignUpForm/SignUpForm";
 
 import classes from "./SignUp.module.scss";
 

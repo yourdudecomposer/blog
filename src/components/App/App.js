@@ -8,15 +8,15 @@ import {
 } from "react-router-dom";
 import { connect } from "react-redux";
 
-import MainPage from "../../pages/MainPage/MainPage";
-import SignIn from "../../pages/SignIn/SignIn";
-import Article from "../../pages/Article/Article";
-import SignUp from "../../pages/SignUp/SignUp";
-import Profile from "../../pages/Profile/Profile";
+import MainPage from "../pages/MainPage/MainPage";
+import SignIn from "../pages/SignIn/SignIn";
+import Article from "../pages/Article/Article";
+import SignUp from "../pages/SignUp/SignUp";
+import Profile from "../pages/Profile/Profile";
 import Header from "../Header/Header";
 import { logIn } from "../../redux/actions/actions";
-import NewArticle from "../../pages/NewArticle/NewArticle";
-import EditArticle from "../../pages/EditArticle/EditArticle";
+import NewArticle from "../pages/NewArticle/NewArticle";
+import EditArticle from "../pages/EditArticle/EditArticle";
 import NoMatch from "../NoMatch/NoMatch";
 
 import classes from "./App.module.scss";
@@ -52,7 +52,7 @@ function App({ dispatch, isLoggedIn }) {
               <Article />
             </Route>
             <Route path="/articles/:slug/edit">
-              <EditArticle />
+              {!isLoggedIn ? <Redirect to="/articles" /> : <EditArticle />}
             </Route>
             <Route path="/new-article">
               {!isLoggedIn ? <Redirect to="/sign-in" /> : <NewArticle />}

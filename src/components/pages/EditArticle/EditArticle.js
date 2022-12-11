@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import { Spin } from "antd";
 import { withRouter } from "react-router-dom";
 
-import NewArticleForm from "../../components/NewArticleForm/NewArticleForm";
-import { editArticle, makeData } from "../../redux/actions/actions";
+import NewArticleForm from "../../NewArticleForm/NewArticleForm";
+import { editArticle, makeData } from "../../../redux/actions/actions";
 
 import classes from "./EditArticle.module.scss";
 

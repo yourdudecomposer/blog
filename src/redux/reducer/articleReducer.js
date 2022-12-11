@@ -2,7 +2,7 @@ import {
   FETCH_ARTICLE_BEGIN,
   FETCH_ARTICLE_SUCCESS,
   FETCH_ARTICLE_FAILURE,
-} from "../actions/actions";
+} from "../redux-tupes";
 
 const initalState = {
   article: {},
